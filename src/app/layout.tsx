@@ -60,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeInit />
       </head>
       <body>
+        <div aria-hidden className="grain" />
         <Navbar />
         <main className="pt-20">{children}</main>
       </body>

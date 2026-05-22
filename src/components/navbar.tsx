@@ -48,7 +48,14 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Link href="/pricing" className="btn-primary hidden md:inline-flex">
+          <Link
+            href="/login"
+            className="hidden rounded-full px-4 py-2 text-sm font-semibold transition-colors hover:bg-[color-mix(in_srgb,var(--text)_6%,transparent)] md:inline-flex"
+            style={{ color: "var(--text)" }}
+          >
+            تسجيل الدخول
+          </Link>
+          <Link href="/signup" className="btn-primary hidden md:inline-flex">
             <Icon.Sparkles size={18} />
             ابدأ مجاناً
           </Link>
@@ -82,7 +89,15 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <Link href="/pricing" onClick={() => setOpen(false)} className="btn-primary mt-2 w-full">
+            <Link
+              href="/login"
+              onClick={() => setOpen(false)}
+              className="rounded-xl px-4 py-3 text-sm font-medium"
+              style={{ color: "var(--text)", border: "1px solid var(--border-color)" }}
+            >
+              تسجيل الدخول
+            </Link>
+            <Link href="/signup" onClick={() => setOpen(false)} className="btn-primary mt-2 w-full">
               <Icon.Sparkles size={18} />
               ابدأ مجاناً
             </Link>

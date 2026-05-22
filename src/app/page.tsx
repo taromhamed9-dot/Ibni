@@ -1,4 +1,5 @@
 import { Footer } from "@/components/footer";
+import { Marquee } from "@/components/marquee";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { Hero } from "@/components/sections/hero";
 import { Stats } from "@/components/sections/stats";
@@ -37,6 +38,7 @@ export default function Home() {
     <>
       <ScrollProgress sections={sections} />
       <Hero />
+      <Marquee />
       <Stats />
       <ProblemSolution />
       <Methodology />
