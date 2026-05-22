@@ -93,7 +93,7 @@ export function Stats() {
                     className="mx-auto grid h-12 w-12 place-items-center rounded-2xl text-2xl"
                     style={{ background: tone.bg, color: tone.fg }}
                   >
-                    {s.emoji}
+                    <span className="emoji-bounce">{s.emoji}</span>
                   </span>
                   <div
                     className="display-xl mt-3 flex items-baseline justify-center text-[32px] sm:text-[40px] md:text-[52px]"

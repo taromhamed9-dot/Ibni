@@ -90,7 +90,7 @@ export function Ecosystem() {
                     className="grid h-12 w-12 place-items-center rounded-2xl text-2xl"
                     style={{ background: tone.bg, color: tone.fg }}
                   >
-                    {f.emoji}
+                    <span className="emoji-bounce">{f.emoji}</span>
                   </span>
                   <h3 className="mt-4 text-base font-extrabold sm:text-lg" style={{ color: "var(--text)" }}>
                     {f.title}

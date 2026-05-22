@@ -1,6 +1,16 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "../reveal";
+
+const SCRIPT = [
+  { side: "them" as const, text: "مرحباً ليان! 🌸 جاهزة لتحدّي اليوم؟" },
+  { side: "me" as const, text: "جاهزة! 🚀" },
+  { side: "them" as const, text: "ممتاز! لاحظتُ أنكِ قويّة في الأرقام. سنبدأ بلغز رياضيات صغير، ثم قصة قصيرة." },
+  { side: "them" as const, text: "🧮  ٣ + ٥ = ؟" },
+  { side: "me" as const, text: "٨ 💡" },
+  { side: "them" as const, text: "أحسنتِ! +٢٥ نقطة ⭐ هل ننتقل إلى القصة؟" },
+];
 
 const AI_FEATURES = [
   { emoji: "🎯", title: "تعلم مخصص", text: "يتكيف المحتوى تلقائياً مع مستوى طفلك وسرعة تعلمه." },
@@ -11,6 +21,107 @@ const AI_FEATURES = [
   { emoji: "🔒", title: "حماية ذكية", text: "فلترة محتوى متقدمة تضمن بيئة آمنة 100% لطفلك." },
 ];
 
+function ChatPreview() {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [visibleCount, setVisibleCount] = useState(0);
+  const [typing, setTyping] = useState(false);
+  const startedRef = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && !startedRef.current) {
+            startedRef.current = true;
+            io.unobserve(el);
+            // Walk through messages with typing indicator before "them" messages.
+            let i = 0;
+            const next = () => {
+              if (i >= SCRIPT.length) {
+                setTyping(false);
+                return;
+              }
+              const isThem = SCRIPT[i].side === "them";
+              if (isThem) {
+                setTyping(true);
+                setTimeout(() => {
+                  setTyping(false);
+                  setVisibleCount((c) => c + 1);
+                  i++;
+                  setTimeout(next, 650);
+                }, 750);
+              } else {
+                setVisibleCount((c) => c + 1);
+                i++;
+                setTimeout(next, 700);
+              }
+            };
+            setTimeout(next, 500);
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className="surface-card relative overflow-hidden rounded-[28px] p-5 sm:p-6">
+      <div className="flex items-center gap-3">
+        <div
+          className="grid h-12 w-12 place-items-center rounded-2xl text-base font-extrabold text-white"
+          style={{ background: "linear-gradient(135deg, var(--blue), var(--sky))" }}
+        >
+          AI
+        </div>
+        <div className="leading-tight">
+          <div className="text-sm font-extrabold" style={{ color: "var(--text)" }}>
+            مساعد إبني الذكي
+          </div>
+          <div className="text-[11px]" style={{ color: "var(--text-muted)" }}>
+            متصل {typing ? "· يكتب الآن…" : ""}
+          </div>
+        </div>
+        <span className="ml-auto rounded-full px-2.5 py-1 text-[10px] font-extrabold" style={{ background: "var(--green-light)", color: "var(--green)" }}>
+          Live
+        </span>
+      </div>
+
+      <div className="mt-5 flex min-h-[280px] flex-col gap-3">
+        {SCRIPT.slice(0, visibleCount).map((m, k) => (
+          <ChatBubble key={k} side={m.side}>{m.text}</ChatBubble>
+        ))}
+        {typing && (
+          <div className="flex justify-start">
+            <div
+              className="rounded-2xl px-3.5 py-2.5"
+              style={{ background: "var(--blue-light)", borderTopLeftRadius: 6 }}
+            >
+              <span className="typing-dots" aria-label="يكتب">
+                <span /><span /><span />
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-5 flex items-center justify-between rounded-2xl p-3"
+        style={{ background: "var(--cream)", border: "1px solid var(--border-color)" }}>
+        <span className="flex items-center gap-2 text-xs font-bold" style={{ color: "var(--text)" }}>
+          <span className="emoji-bounce">📈</span> تقدم اليوم
+        </span>
+        <span className="gradient-text-warm text-base font-extrabold" style={{ letterSpacing: "-0.02em" }}>٨٥٪</span>
+      </div>
+      <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full" style={{ background: "var(--border-color)" }}>
+        <div className="h-full rounded-full" style={{ width: "85%", background: "linear-gradient(90deg, var(--orange), var(--green))" }} />
+      </div>
+    </div>
+  );
+}
+
 export function AIPersonalization() {
   return (
     <section id="ai" className="relative overflow-hidden py-14 md:py-24">
@@ -20,61 +131,9 @@ export function AIPersonalization() {
       </div>
 
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-5 md:px-8 lg:grid-cols-12 lg:gap-14">
-        {/* Chat preview */}
+        {/* Animated chat preview */}
         <Reveal className="lg:col-span-5">
-          <div className="surface-card relative overflow-hidden rounded-[28px] p-5 sm:p-6">
-            <div className="flex items-center gap-3">
-              <div
-                className="grid h-12 w-12 place-items-center rounded-2xl text-base font-extrabold text-white"
-                style={{ background: "linear-gradient(135deg, var(--blue), var(--sky))" }}
-              >
-                AI
-              </div>
-              <div className="leading-tight">
-                <div className="text-sm font-extrabold" style={{ color: "var(--text)" }}>
-                  مساعد إبني الذكي
-                </div>
-                <div className="text-[11px]" style={{ color: "var(--text-muted)" }}>
-                  متصل · يكتب الآن…
-                </div>
-              </div>
-              <span className="ml-auto rounded-full px-2.5 py-1 text-[10px] font-extrabold" style={{ background: "var(--green-light)", color: "var(--green)" }}>
-                Live
-              </span>
-            </div>
-
-            <div className="mt-5 space-y-3">
-              <ChatBubble side="them">
-                مرحباً ليان! 🌸 جاهزة لتحدّي اليوم؟
-              </ChatBubble>
-              <ChatBubble side="me">
-                جاهزة! 🚀
-              </ChatBubble>
-              <ChatBubble side="them">
-                ممتاز! لاحظتُ أنكِ قويّة في الأرقام. سنبدأ بلغز رياضيات صغير، ثم قصة قصيرة.
-              </ChatBubble>
-              <ChatBubble side="them">
-                🧮 ٣ + ٥ = ؟
-              </ChatBubble>
-              <ChatBubble side="me">
-                ٨ 💡
-              </ChatBubble>
-              <ChatBubble side="them">
-                أحسنتِ! +٢٥ نقطة ⭐ هل ننتقل إلى القصة؟
-              </ChatBubble>
-            </div>
-
-            <div className="mt-5 flex items-center justify-between rounded-2xl p-3"
-              style={{ background: "var(--cream)", border: "1px solid var(--border-color)" }}>
-              <span className="flex items-center gap-2 text-xs font-bold" style={{ color: "var(--text)" }}>
-                <span>📈</span> تقدم اليوم
-              </span>
-              <span className="gradient-text-warm text-base font-extrabold" style={{ letterSpacing: "-0.02em" }}>٨٥٪</span>
-            </div>
-            <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full" style={{ background: "var(--border-color)" }}>
-              <div className="h-full rounded-full" style={{ width: "85%", background: "linear-gradient(90deg, var(--orange), var(--green))" }} />
-            </div>
-          </div>
+          <ChatPreview />
         </Reveal>
 
         {/* Copy + grid */}
