@@ -206,24 +206,71 @@ html, body {
   .scroll-track { display: none; }
 }
 
-/* ---------- Scroll progress bar (top) ---------- */
+/* ---------- Scroll progress bar (top) — mobile-prominent ---------- */
 .top-progress {
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: 3px;
-  background: transparent;
+  height: 6px;
+  background: color-mix(in srgb, var(--text) 6%, transparent);
   z-index: 60;
   pointer-events: none;
 }
+@media (min-width: 768px) {
+  .top-progress { height: 5px; }
+}
 .top-progress > .bar {
+  position: relative;
   height: 100%;
   width: 100%;
-  background: linear-gradient(90deg, var(--orange), var(--green), var(--sky));
+  background: linear-gradient(90deg, #F39A1F 0%, #FF6F61 30%, #6BC04B 70%, #43B8F0 100%);
+  background-size: 200% 100%;
+  animation: bar-shine 6s linear infinite;
   transform-origin: right; /* RTL */
   transform: scaleX(0);
   will-change: transform;
+  box-shadow: 0 0 18px rgba(243, 154, 31, 0.55), 0 0 6px rgba(107, 192, 75, 0.45);
+}
+.top-progress > .bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.45), transparent 60%);
 }
 html[dir="ltr"] .top-progress > .bar { transform-origin: left; }
+@keyframes bar-shine {
+  to { background-position: -200% 0; }
+}
+
+/* Scroll-percentage chip (top-right on mobile) */
+.scroll-pct {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 61;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--text);
+  pointer-events: none;
+  letter-spacing: 0;
+  opacity: 0;
+  transform: translate3d(0, -8px, 0);
+  transition: opacity 0.3s var(--ease-spring), transform 0.3s var(--ease-spring);
+}
+.scroll-pct[data-active="true"] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+@media (min-width: 768px) {
+  .scroll-pct { display: none; }
+}
 
 /* ---------- Reveal animation ---------- */
 .reveal {

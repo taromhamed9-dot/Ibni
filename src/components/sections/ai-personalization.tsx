@@ -1,107 +1,139 @@
 "use client";
 
-import { Icon } from "../icons";
 import { Reveal } from "../reveal";
 
-const items = [
-  { icon: <Icon.Spark />, title: "مسار فريد لكل طفل", text: "نبني خريطة تعلّم خاصة بكل طفل من أول يوم." },
-  { icon: <Icon.Mic />, title: "محادثة صوتية بالعربية", text: "يتحدث ويسمع طفلك بفصحى مبسّطة أو لهجة محلية." },
-  { icon: <Icon.Lightning />, title: "تكيّف لحظي", text: "صعوبة الدرس تتغيّر حسب أدائه ومزاجه." },
-  { icon: <Icon.Bell />, title: "تحفيز ذكي", text: "تذكير لطيف عند فقدان التركيز، استراحة عند الإرهاق." },
+const AI_FEATURES = [
+  { emoji: "🎯", title: "تعلم مخصص", text: "يتكيف المحتوى تلقائياً مع مستوى طفلك وسرعة تعلمه." },
+  { emoji: "📊", title: "تحليل ذكي", text: "تقارير مفصلة عن نقاط القوة والمجالات التي تحتاج تعزيز." },
+  { emoji: "🗣️", title: "تفاعل صوتي", text: "مساعد صوتي يتحدث العربية يرافق طفلك في رحلة التعلم." },
+  { emoji: "📝", title: "واجبات ذكية", text: "تمارين وواجبات تتولد تلقائياً بناءً على احتياجات الطفل." },
+  { emoji: "🌙", title: "قصص مولّدة بالذكاء", text: "قصص تعليمية فريدة يولدها الذكاء الاصطناعي لكل طفل." },
+  { emoji: "🔒", title: "حماية ذكية", text: "فلترة محتوى متقدمة تضمن بيئة آمنة 100% لطفلك." },
 ];
 
 export function AIPersonalization() {
   return (
-    <section id="ai" className="relative py-16 md:py-28">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="grid items-center gap-12 lg:grid-cols-12">
-          <Reveal className="lg:col-span-6">
-            <span className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold"
-              style={{ background: "var(--blue-light)", color: "var(--blue)" }}>
-              <Icon.Robot size={14} /> ذكاء اصطناعي تربوي
-            </span>
-            <h2 className="mt-4 font-display text-3xl font-extrabold md:text-5xl" style={{ color: "var(--text)" }}>
-              ذكاء اصطناعي صُمّم لطفل عربي،
-              <br />
-              <span className="gradient-text-cool">ليس مساعداً عاماً.</span>
-            </h2>
-            <p className="mt-4 text-base md:text-lg" style={{ color: "var(--text-muted)" }}>
-              بنينا نموذج إبني التربوي على بيانات تعليمية عربية مفلترة. يتحدث لغة طفلك، يعرف حدوده، ولا يتدخل خارج
-              ما يحتاجه التعلّم الآمن.
-            </p>
+    <section id="ai" className="relative overflow-hidden py-14 md:py-24">
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div className="blob blob-a" style={{ top: "-8rem", left: "-6rem", width: 420, height: 420, background: "radial-gradient(circle, #B8DFFF 0%, transparent 70%)" }} />
+        <div className="blob blob-b" style={{ bottom: "-10rem", right: "-6rem", width: 400, height: 400, background: "radial-gradient(circle, #C9EBB6 0%, transparent 70%)" }} />
+      </div>
 
-            <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-              {items.map((it) => (
-                <li key={it.title} className="surface-card flex items-start gap-3 rounded-2xl p-4">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl"
-                    style={{ background: "var(--orange-light)", color: "var(--orange)" }}>{it.icon}</span>
-                  <div>
-                    <p className="font-bold" style={{ color: "var(--text)" }}>{it.title}</p>
-                    <p className="text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{it.text}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-
-          <Reveal className="lg:col-span-6" delay={120}>
-            {/* Stylized AI chat preview */}
-            <div className="surface-card rounded-3xl p-5 md:p-7">
-              <div className="flex items-center gap-3 border-b pb-4" style={{ borderColor: "var(--border-color)" }}>
-                <span className="grid h-10 w-10 place-items-center rounded-xl"
-                  style={{ background: "var(--blue-light)", color: "var(--blue)" }}>
-                  <Icon.Robot />
-                </span>
-                <div className="leading-tight">
-                  <p className="font-bold" style={{ color: "var(--text)" }}>مساعد إبني</p>
-                  <p className="text-xs" style={{ color: "var(--text-muted)" }}>متصل · يتحدث العربية</p>
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 sm:px-5 md:px-8 lg:grid-cols-12 lg:gap-14">
+        {/* Chat preview */}
+        <Reveal className="lg:col-span-5">
+          <div className="surface-card relative overflow-hidden rounded-[28px] p-5 sm:p-6">
+            <div className="flex items-center gap-3">
+              <div
+                className="grid h-12 w-12 place-items-center rounded-2xl text-base font-extrabold text-white"
+                style={{ background: "linear-gradient(135deg, var(--blue), var(--sky))" }}
+              >
+                AI
+              </div>
+              <div className="leading-tight">
+                <div className="text-sm font-extrabold" style={{ color: "var(--text)" }}>
+                  مساعد إبني الذكي
                 </div>
-                <span className="ml-auto inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold"
-                  style={{ background: "var(--green-light)", color: "var(--green)" }}>
-                  <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--green)" }} />
-                  آمن للأطفال
-                </span>
+                <div className="text-[11px]" style={{ color: "var(--text-muted)" }}>
+                  متصل · يكتب الآن…
+                </div>
               </div>
-
-              <div className="mt-5 space-y-3">
-                <Bubble side="them" text="السلام عليكم يا إبني! كيف حالك اليوم؟" />
-                <Bubble side="me" text="تمام يا أستاذ. ساعدني أحلّ تمرين الجمع." />
-                <Bubble side="them" text="بكل سرور 🎈 سأبدأ بمثال من حياتك: عندك ٣ تفاحات، أعطاك أبوك ٤ أخرى... كم صار عندك؟" />
-                <Bubble side="me" text="٧!" />
-                <Bubble side="them" text="ممتاز! نجمة لك. هل نجرّب مثالاً أصعب قليلاً؟" />
-              </div>
-
-              <div className="mt-5 flex items-center gap-2 rounded-2xl border p-2"
-                style={{ borderColor: "var(--border-color)" }}>
-                <Icon.Mic />
-                <span className="text-sm" style={{ color: "var(--text-muted)" }}>تحدّث أو اكتب رسالتك...</span>
-                <span className="ml-auto grid h-9 w-9 place-items-center rounded-full"
-                  style={{ background: "var(--orange)", color: "#fff" }}>
-                  <Icon.ArrowLeft size={16} />
-                </span>
-              </div>
+              <span className="ml-auto rounded-full px-2.5 py-1 text-[10px] font-extrabold" style={{ background: "var(--green-light)", color: "var(--green)" }}>
+                Live
+              </span>
             </div>
+
+            <div className="mt-5 space-y-3">
+              <ChatBubble side="them">
+                مرحباً ليان! 🌸 جاهزة لتحدّي اليوم؟
+              </ChatBubble>
+              <ChatBubble side="me">
+                جاهزة! 🚀
+              </ChatBubble>
+              <ChatBubble side="them">
+                ممتاز! لاحظتُ أنكِ قويّة في الأرقام. سنبدأ بلغز رياضيات صغير، ثم قصة قصيرة.
+              </ChatBubble>
+              <ChatBubble side="them">
+                🧮 ٣ + ٥ = ؟
+              </ChatBubble>
+              <ChatBubble side="me">
+                ٨ 💡
+              </ChatBubble>
+              <ChatBubble side="them">
+                أحسنتِ! +٢٥ نقطة ⭐ هل ننتقل إلى القصة؟
+              </ChatBubble>
+            </div>
+
+            <div className="mt-5 flex items-center justify-between rounded-2xl p-3"
+              style={{ background: "var(--cream)", border: "1px solid var(--border-color)" }}>
+              <span className="flex items-center gap-2 text-xs font-bold" style={{ color: "var(--text)" }}>
+                <span>📈</span> تقدم اليوم
+              </span>
+              <span className="gradient-text-warm text-base font-extrabold" style={{ letterSpacing: "-0.02em" }}>٨٥٪</span>
+            </div>
+            <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full" style={{ background: "var(--border-color)" }}>
+              <div className="h-full rounded-full" style={{ width: "85%", background: "linear-gradient(90deg, var(--orange), var(--green))" }} />
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Copy + grid */}
+        <div className="lg:col-span-7">
+          <Reveal>
+            <span
+              className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest"
+              style={{ background: "var(--blue-light)", color: "var(--blue)" }}
+            >
+              <span>🧠</span> مدعوم بالذكاء الاصطناعي
+            </span>
+            <h2 className="display-xl mt-4 text-3xl sm:text-4xl md:text-5xl" style={{ color: "var(--text)" }}>
+              تعليم ذكي{" "}
+              <span className="gradient-text-warm">يفهم طفلك</span>
+            </h2>
+            <p className="mt-4 text-[15px] leading-relaxed sm:text-base md:text-lg" style={{ color: "var(--text-muted)" }}>
+              يستخدم إبني أحدث تقنيات الذكاء الاصطناعي لفهم أسلوب تعلم كل طفل وتقديم تجربة تعليمية مخصصة بالكامل —
+              كأنه معلّم خاص لطفلك يعمل ٢٤/٧.
+            </p>
           </Reveal>
+
+          <div className="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+            {AI_FEATURES.map((f, i) => (
+              <Reveal key={f.title} delay={(i % 2) * 80}>
+                <div
+                  className="flex items-start gap-3 rounded-2xl p-4"
+                  style={{ background: "var(--card-bg)", border: "1px solid var(--border-color)" }}
+                >
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl text-xl"
+                    style={{ background: "var(--blue-light)" }}>
+                    {f.emoji}
+                  </span>
+                  <div className="leading-snug">
+                    <div className="text-sm font-extrabold" style={{ color: "var(--text)" }}>{f.title}</div>
+                    <div className="mt-1 text-[12px]" style={{ color: "var(--text-muted)" }}>{f.text}</div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function Bubble({ side, text }: { side: "me" | "them"; text: string }) {
+function ChatBubble({ side, children }: { side: "me" | "them"; children: React.ReactNode }) {
   const isMe = side === "me";
   return (
-    <div className={`flex ${isMe ? "justify-start" : "justify-end"}`}>
+    <div className={`flex ${isMe ? "justify-end" : "justify-start"}`}>
       <div
-        className="max-w-[78%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed"
-        style={{
-          background: isMe ? "var(--orange)" : "var(--blue-light)",
-          color: isMe ? "#fff" : "var(--text)",
-          borderTopRightRadius: isMe ? 20 : 6,
-          borderTopLeftRadius: isMe ? 6 : 20,
-        }}
+        className="max-w-[80%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed"
+        style={
+          isMe
+            ? { background: "linear-gradient(135deg, var(--orange), #ff8a3d)", color: "#fff", borderTopRightRadius: 6 }
+            : { background: "var(--blue-light)", color: "var(--text)", borderTopLeftRadius: 6 }
+        }
       >
-        {text}
+        {children}
       </div>
     </div>
   );

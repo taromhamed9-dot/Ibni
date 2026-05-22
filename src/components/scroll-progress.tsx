@@ -7,6 +7,8 @@ type Section = { id: string; label: string };
 export function ScrollProgress({ sections }: { sections: Section[] }) {
   const fillRef = useRef<HTMLDivElement | null>(null);
   const barRef = useRef<HTMLDivElement | null>(null);
+  const pctRef = useRef<HTMLDivElement | null>(null);
+  const pctNumRef = useRef<HTMLSpanElement | null>(null);
   const tickingRef = useRef(false);
   const [active, setActive] = useState<string | null>(null);
   const [dots, setDots] = useState<{ id: string; topPct: number }[]>([]);
@@ -19,6 +21,11 @@ export function ScrollProgress({ sections }: { sections: Section[] }) {
       const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
       if (fillRef.current) fillRef.current.style.transform = `scaleY(${ratio})`;
       if (barRef.current) barRef.current.style.transform = `scaleX(${ratio})`;
+      if (pctRef.current && pctNumRef.current) {
+        const pct = Math.round(ratio * 100);
+        pctNumRef.current.textContent = pct.toLocaleString("ar-EG") + "٪";
+        pctRef.current.dataset.active = window.scrollY > 80 ? "true" : "false";
+      }
       tickingRef.current = false;
     };
     const onScroll = () => {
@@ -91,6 +98,10 @@ export function ScrollProgress({ sections }: { sections: Section[] }) {
     <>
       <div className="top-progress" aria-hidden>
         <div ref={barRef} className="bar" />
+      </div>
+      <div ref={pctRef} className="scroll-pct" aria-hidden>
+        <span>📍</span>
+        <span ref={pctNumRef}>٠٪</span>
       </div>
       <div className="scroll-track" aria-hidden>
         <div ref={fillRef} className="scroll-fill" />

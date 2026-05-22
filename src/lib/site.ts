@@ -25,8 +25,8 @@ export const NAV_LINKS = [
 ] as const;
 
 export const STATS = [
-  { value: 1200, suffix: "+", label: "طفل مسجل في المنصة" },
-  { value: 85, suffix: "+", label: "درس تفاعلي متاح" },
-  { value: 12, suffix: "", label: "ولاية وصلنا إليها" },
-  { value: 94, suffix: "%", label: "رضى أولياء الأمور" },
+  { value: 50000, suffix: "+", label: "طفل نشط", emoji: "👧🏻" },
+  { value: 200, suffix: "+", label: "لعبة تعليمية", emoji: "🎮" },
+  { value: 500, suffix: "+", label: "قصة تفاعلية", emoji: "📖" },
+  { value: 98, suffix: "%", label: "رضا الأولياء", emoji: "💚" },
 ] as const;

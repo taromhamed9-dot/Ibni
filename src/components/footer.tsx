@@ -7,37 +7,31 @@ const columns: { title: string; links: { href: string; label: string }[] }[] = [
   {
     title: "المنصة",
     links: [
-      { href: "/apps", label: "تطبيقاتنا" },
-      { href: "/methodology", label: "المنهجية" },
-      { href: "/pricing", label: "الاشتراك" },
-      { href: "/blog", label: "المدونة" },
+      { href: "/", label: "الرئيسية" },
+      { href: "/apps", label: "الألعاب التعليمية" },
+      { href: "/apps", label: "القصص التفاعلية" },
+      { href: "/methodology", label: "الذكاء الاصطناعي" },
+      { href: "/parents", label: "لوحة الأولياء" },
     ],
   },
   {
-    title: "العائلة",
+    title: "الشركة",
     links: [
-      { href: "/parents", label: "لأولياء الأمور" },
-      { href: "/child", label: "لوحة الطفل" },
-      { href: "/community", label: "مجتمع إبني" },
-      { href: "/faq", label: "الأسئلة الشائعة" },
-    ],
-  },
-  {
-    title: "للشركاء",
-    links: [
-      { href: "/schools", label: "للمدارس" },
-      { href: "/teachers", label: "للمعلمين" },
-      { href: "/careers", label: "الوظائف" },
       { href: "/about", label: "من نحن" },
+      { href: "/careers", label: "فريق العمل" },
+      { href: "/careers", label: "وظائف" },
+      { href: "/blog", label: "المدونة" },
+      { href: "/contact", label: "تواصل معنا" },
     ],
   },
   {
     title: "الدعم",
     links: [
-      { href: "/support", label: "مركز الدعم" },
-      { href: "/contact", label: "تواصل معنا" },
-      { href: "/privacy", label: "الخصوصية" },
-      { href: "/terms", label: "الشروط" },
+      { href: "/support", label: "مركز المساعدة" },
+      { href: "/faq", label: "الأسئلة الشائعة" },
+      { href: "/privacy", label: "سياسة الخصوصية" },
+      { href: "/terms", label: "شروط الاستخدام" },
+      { href: "/privacy", label: "سلامة الأطفال" },
     ],
   },
 ];
@@ -50,7 +44,10 @@ export function Footer() {
           <div className="md:col-span-4">
             <Logo />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/75">
-              {SITE.slogan} — منصة تعليمية ذكية وآمنة للأطفال العرب من ٥ إلى ١٠ سنوات.
+              {SITE.slogan}
+              <br />
+              المنصة التعليمية الذكية رقم ١ للأطفال العرب. نقدم بديلاً آمناً وممتعاً لإدمان الشاشات
+              من خلال الذكاء الاصطناعي والألعاب التربوية والقيم العربية الإسلامية.
             </p>
 
             <div className="mt-6 flex items-center gap-2">
@@ -67,7 +64,7 @@ export function Footer() {
           </div>
 
           <div className="md:col-span-8">
-            <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
               {columns.map((c) => (
                 <div key={c.title}>
                   <p className="text-sm font-bold text-white">{c.title}</p>
@@ -87,7 +84,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/60 md:flex-row md:items-center">
-          <p>© {new Date().getFullYear()} {SITE.name} — جميع الحقوق محفوظة.</p>
+          <p>© {new Date().getFullYear()} {SITE.name}. جميع الحقوق محفوظة. صُنع بـ ❤️ في الجزائر 🇩🇿</p>
           <p className="flex items-center gap-2">
             <Icon.Globe size={14} />
             متاحة بالعربية · قريباً Français · English

@@ -1,18 +1,60 @@
 "use client";
 
-import { Icon } from "../icons";
+import Link from "next/link";
 import { Reveal } from "../reveal";
 
-const pillars = [
-  { icon: <Icon.Robot size={32} />, color: "blue",   title: "مساعد إبني الذكي", text: "رفيق ودود يتحدث العربية بفصاحة، يشرح، يحفّز، ويقرأ بصوت طبيعي." },
-  { icon: <Icon.Gamepad size={32} />, color: "orange", title: "ألعاب تعليمية", text: "ألعاب قصيرة تبني الحساب، اللغة، الانتباه، والتفكير المنطقي." },
-  { icon: <Icon.Book size={32} />, color: "green",  title: "قصص تفاعلية", text: "قصص بأبطال عرب يختار طفلك مسارها فيتعلّم القيم باللعب." },
-  { icon: <Icon.Quran size={32} />, color: "blue",   title: "أخلاق وقرآن", text: "محتوى أصيل لتعليم الأذكار، الأخلاق، السيرة، وحب اللغة العربية." },
-  { icon: <Icon.School size={32} />, color: "orange", title: "نظام افتراضي للمدارس", text: "صفوف رقمية للمعلمين، أنشطة جماعية، وتقارير لولي الأمر." },
-  { icon: <Icon.Cube size={32} />, color: "green",  title: "ألعاب وأدوات فيزيائية", text: "ربط التعلّم الرقمي بألعاب يدوية حقيقية تصل إلى بيتك." },
-];
+const FEATURES = [
+  {
+    emoji: "🧠",
+    title: "ذكاء اصطناعي تعليمي",
+    text: "مساعد ذكي يتكيف مع مستوى طفلك ويقدم دروساً مخصصة بناءً على نقاط القوة والضعف.",
+    tone: "blue",
+  },
+  {
+    emoji: "🎮",
+    title: "ألعاب تربوية تفاعلية",
+    text: "أكثر من ٢٠٠ لعبة تعليمية مصممة وفق مبادئ علم نفس الطفل لتعزيز التعلم بالمتعة.",
+    tone: "orange",
+  },
+  {
+    emoji: "📖",
+    title: "قصص تفاعلية مشوّقة",
+    text: "قصص عربية تفاعلية يختار فيها الطفل مسار الأحداث مع رسوم متحركة ومؤثرات صوتية.",
+    tone: "green",
+  },
+  {
+    emoji: "👨‍👩‍👧",
+    title: "لوحة تحكم الأولياء",
+    text: "تابع تقدم طفلك لحظة بلحظة مع تقارير ذكية ورؤى مبنية على الذكاء الاصطناعي.",
+    tone: "blue",
+  },
+  {
+    emoji: "🏫",
+    title: "فصول افتراضية",
+    text: "نظام مدرسي متكامل يربط المعلمين بالطلاب في بيئة تعليمية تفاعلية وآمنة.",
+    tone: "orange",
+  },
+  {
+    emoji: "🏆",
+    title: "نظام المكافآت والإنجازات",
+    text: "حافز إيجابي يعزز دافعية الطفل من خلال نقاط وأوسمة وتحديات ممتعة.",
+    tone: "green",
+  },
+  {
+    emoji: "🕌",
+    title: "قيم عربية إسلامية",
+    text: "محتوى يعزز الهوية العربية والإسلامية مع تعليم القرآن والأخلاق والآداب.",
+    tone: "blue",
+  },
+  {
+    emoji: "🤸",
+    title: "أنشطة بدنية ذكية",
+    text: "دمج الأنشطة الحركية مع التعلم الرقمي لصحة جسدية ونفسية متوازنة.",
+    tone: "orange",
+  },
+] as const;
 
-const colorMap: Record<string, { bg: string; fg: string }> = {
+const toneMap = {
   blue: { bg: "var(--blue-light)", fg: "var(--blue)" },
   orange: { bg: "var(--orange-light)", fg: "var(--orange)" },
   green: { bg: "var(--green-light)", fg: "var(--green)" },
@@ -20,37 +62,67 @@ const colorMap: Record<string, { bg: string; fg: string }> = {
 
 export function Ecosystem() {
   return (
-    <section id="ecosystem" className="relative py-16 md:py-28">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <Reveal className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold"
-            style={{ background: "var(--orange-light)", color: "var(--orange)" }}>
-            <Icon.Tree size={14} /> منظومة إبني
+    <section id="ecosystem" className="relative py-14 md:py-24" style={{ background: "var(--cream)" }}>
+      <div className="mx-auto max-w-7xl px-4 sm:px-5 md:px-8">
+        <Reveal className="mx-auto max-w-2xl text-center">
+          <span
+            className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest"
+            style={{ background: "var(--blue-light)", color: "var(--blue)" }}
+          >
+            <span>✨</span> منظومة تعليمية متكاملة
           </span>
-          <h2 className="mt-4 font-display text-3xl font-extrabold md:text-5xl" style={{ color: "var(--text)" }}>
-            ست أركان متّصلة تبني عقل طفلك من كل اتجاه.
+          <h2 className="display-xl mt-4 text-3xl sm:text-4xl md:text-5xl" style={{ color: "var(--text)" }}>
+            كل ما يحتاجه طفلك{" "}
+            <span className="gradient-text-warm">في مكان واحد</span>
           </h2>
-          <p className="mt-4 text-base md:text-lg" style={{ color: "var(--text-muted)" }}>
-            ليست مجرد تطبيق. إبني منظومة متكاملة تنمو مع طفلك من سن الخامسة إلى العاشرة.
+          <p className="mt-4 text-[15px] leading-relaxed sm:text-base md:text-lg" style={{ color: "var(--text-muted)" }}>
+            منصة شاملة تجمع بين أحدث تقنيات التعليم والذكاء الاصطناعي مع القيم العربية الأصيلة.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {pillars.map((p, i) => (
-            <Reveal key={p.title} delay={i * 80}>
-              <article className="surface-card h-full rounded-3xl p-7">
-                <span
-                  className="grid h-14 w-14 place-items-center rounded-2xl"
-                  style={{ background: colorMap[p.color].bg, color: colorMap[p.color].fg }}
-                >
-                  {p.icon}
-                </span>
-                <h3 className="mt-5 font-display text-lg font-extrabold" style={{ color: "var(--text)" }}>{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--text-muted)" }}>{p.text}</p>
-              </article>
-            </Reveal>
-          ))}
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+          {FEATURES.map((f, i) => {
+            const tone = toneMap[f.tone];
+            return (
+              <Reveal key={f.title} delay={(i % 4) * 80}>
+                <div className="tilt surface-card group relative h-full overflow-hidden rounded-3xl p-5">
+                  <span
+                    className="grid h-12 w-12 place-items-center rounded-2xl text-2xl"
+                    style={{ background: tone.bg, color: tone.fg }}
+                  >
+                    {f.emoji}
+                  </span>
+                  <h3 className="mt-4 text-base font-extrabold sm:text-lg" style={{ color: "var(--text)" }}>
+                    {f.title}
+                  </h3>
+                  <p className="mt-2 text-[13px] leading-relaxed sm:text-sm" style={{ color: "var(--text-muted)" }}>
+                    {f.text}
+                  </p>
+                  <div
+                    className="mt-5 inline-flex items-center gap-1 text-[12px] font-extrabold transition-colors"
+                    style={{ color: tone.fg }}
+                  >
+                    اكتشف المزيد <span aria-hidden>←</span>
+                  </div>
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute -bottom-12 -left-12 h-32 w-32 rounded-full opacity-40 blur-2xl"
+                    style={{ background: tone.bg }}
+                  />
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
+
+        <Reveal delay={300}>
+          <div className="mt-10 flex justify-center">
+            <Link href="/apps" className="btn-ghost" style={{ minHeight: 48 }}>
+              <span>🎯</span>
+              اكتشف جميع المميزات
+            </Link>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

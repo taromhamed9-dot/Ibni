@@ -2,14 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { Icon } from "../icons";
-import { Magnetic } from "../magnetic";
-import { Mascot } from "../mascot";
 
 export function Hero() {
   const stageRef = useRef<HTMLDivElement | null>(null);
 
-  // Mouse parallax for floating orbit cards
+  // Mouse parallax (desktop) — disabled on touch
   useEffect(() => {
     const stage = stageRef.current;
     if (!stage) return;
@@ -51,164 +48,161 @@ export function Hero() {
         <div className="blob blob-a" style={{ top: "-12rem", right: "-10rem", width: 540, height: 540, background: "radial-gradient(circle, #FFCFA0 0%, transparent 70%)" }} />
         <div className="blob blob-b" style={{ bottom: "-14rem", left: "-8rem", width: 520, height: 520, background: "radial-gradient(circle, #B8DFFF 0%, transparent 70%)" }} />
         <div className="blob blob-a" style={{ top: "30%", left: "40%", width: 360, height: 360, background: "radial-gradient(circle, #C9EBB6 0%, transparent 70%)", animationDelay: "-9s" }} />
-        <div className="absolute inset-0 dotted-grid opacity-25" />
+        <div className="absolute inset-0 dotted-grid opacity-20" />
       </div>
 
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-12 md:px-8 md:pb-28 md:pt-20 lg:grid-cols-12">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 pb-14 pt-6 sm:px-5 md:gap-12 md:px-8 md:pb-24 md:pt-16 lg:grid-cols-12">
         {/* Editorial column */}
         <div className="lg:col-span-7">
-          <div className="flex items-center gap-3">
-            <span className="sticker">
-              <Icon.Sparkles size={14} />
-              جديد · مساعد إبني الذكي
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="sticker text-[11px]">
+              <span>✨</span>
+              البديل الذكي لإدمان الشاشات
             </span>
             <span
-              className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold"
+              className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold"
               style={{ background: "var(--card-bg)", color: "var(--text-muted)", border: "1px solid var(--border-color)" }}
             >
               <span className="relative inline-flex h-2 w-2">
                 <span className="absolute inset-0 animate-ping rounded-full" style={{ background: "var(--green)" }} />
                 <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: "var(--green)" }} />
               </span>
-              نبثّ من الجزائر
+              نبثّ من الجزائر 🇩🇿
             </span>
           </div>
 
           <h1
-            className="display-xl mt-6 text-[44px] md:text-[78px] lg:text-[88px]"
+            className="display-xl mt-5 text-[40px] sm:text-[52px] md:text-[76px] lg:text-[92px]"
             style={{ color: "var(--text)" }}
           >
-            <span className="block">عالمٌ آمن</span>
+            <span className="block">نبني <span className="gradient-text-warm">عقولاً</span></span>
             <span className="block">
-              <span className="squiggle">يحبّه طفلك،</span>
+              <span className="squiggle">ونصنع مستقبلاً.</span>
             </span>
-            <span className="block">
-              يبني <span className="gradient-text-warm">عقله</span>
-            </span>
-            <span className="block">بدل أن يستهلكه.</span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-base leading-loose md:text-lg" style={{ color: "var(--text-muted)" }}>
-            منصة تعليمية متكاملة للأطفال من{" "}
-            <strong style={{ color: "var(--text)" }}>5 إلى 10 سنوات</strong> —
-            ذكاء اصطناعي تربوي، ألعاب علمية، قصص بصوت عربي فصيح، وقيم تحبّها الأسرة.
+          <p className="mt-5 max-w-xl text-[15px] leading-loose sm:text-base md:text-lg" style={{ color: "var(--text-muted)" }}>
+            <strong style={{ color: "var(--text)" }}>البديل الذكي لإدمان الشاشات.</strong>{" "}
+            منصة تعليمية تفاعلية تجمع بين الذكاء الاصطناعي والألعاب التربوية والقيم العربية الإسلامية،
+            لبناء جيل واعٍ ومبدع.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Magnetic>
-              <Link href="/signup" className="btn-primary magnetic-target text-base">
-                <Icon.Rocket size={18} />
-                ابدأ مجاناً — ١٤ يوم
-              </Link>
-            </Magnetic>
-            <Link href="/apps" className="btn-ghost">
-              <Icon.Eye size={18} />
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+            <Link
+              href="/signup"
+              className="btn-primary justify-center text-base"
+              style={{ minHeight: 52 }}
+            >
+              <span>🚀</span>
+              ابدأ رحلة طفلك مجاناً
+            </Link>
+            <Link
+              href="/apps"
+              className="btn-ghost justify-center text-base"
+              style={{ minHeight: 52 }}
+            >
+              <span>🎬</span>
               شاهد كيف تعمل
             </Link>
-            <span className="hidden items-center gap-2 text-xs md:inline-flex" style={{ color: "var(--text-muted)" }}>
-              <Icon.CheckCircle size={14} /> بدون بطاقة بنكية
-            </span>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <TrustChip icon={<Icon.Shield size={16} />} text="بيئة آمنة 100%" tone="green" />
-            <TrustChip icon={<Icon.Lock size={16} />} text="بدون إعلانات" tone="blue" />
-            <TrustChip icon={<Icon.Quran size={16} />} text="قيم عربية وإسلامية" tone="orange" />
-          </div>
-
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <StoreButton store="app" />
-            <StoreButton store="play" />
+          {/* Trust pills */}
+          <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-2.5">
+            <TrustPill emoji="🛡️" label="محتوى آمن 100%" tone="green" />
+            <TrustPill emoji="🧠" label="مدعوم بالذكاء الاصطناعي" tone="blue" />
+            <TrustPill emoji="🌍" label="لملايين الأطفال العرب" tone="orange" />
+            <TrustPill emoji="✅" label="معتمد تربوياً" tone="green" />
           </div>
         </div>
 
-        {/* Stage with mascot */}
+        {/* AI assistant stage */}
         <div className="lg:col-span-5">
           <div
             ref={stageRef}
-            className="relative mx-auto aspect-square w-full max-w-md"
+            className="relative mx-auto w-full max-w-md"
             style={{ ["--mx" as string]: "0", ["--my" as string]: "0" }}
           >
-            {/* Soft halo */}
+            {/* Halo */}
             <div
               aria-hidden
-              className="absolute inset-6 rounded-full"
+              className="absolute inset-4 rounded-[40px]"
               style={{
                 background: "conic-gradient(from 200deg, #FFCFA0, #B8DFFF, #C9EBB6, #FFCFA0)",
-                filter: "blur(28px)",
-                opacity: 0.55,
+                filter: "blur(36px)",
+                opacity: 0.5,
               }}
             />
 
-            {/* Orbit ring */}
-            <svg aria-hidden viewBox="0 0 400 400" className="absolute inset-0 h-full w-full">
-              <defs>
-                <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stopColor="#F39A1F" />
-                  <stop offset="1" stopColor="#6BC04B" />
-                </linearGradient>
-              </defs>
-              <circle cx="200" cy="200" r="170" fill="none" stroke="url(#ring)" strokeWidth="1.2" strokeDasharray="2 8" opacity="0.55" />
-              <circle cx="200" cy="200" r="138" fill="none" stroke="var(--border-color)" strokeWidth="1" />
-            </svg>
-
-            {/* Floating cards with parallax */}
-            <OrbitCard
-              className="absolute right-[-1.5rem] top-4"
-              dx={-1} dy={-1}
-              tone="orange"
-              icon={<Icon.Trophy size={18} />}
-              title="نجمة اليوم"
-              text="+25 نقطة جديدة"
-            />
-            <OrbitCard
-              className="absolute bottom-12 left-[-1.5rem]"
-              dx={1} dy={1}
-              tone="green"
-              icon={<Icon.Brain size={18} />}
-              title="درس مخصّص"
-              text="مبني على مستوى ليان"
-            />
-            <OrbitCard
-              className="absolute right-2 bottom-[-1rem]"
-              dx={1} dy={-1}
-              tone="blue"
-              icon={<Icon.Robot size={18} />}
-              title="مساعد إبني"
-              text="يقرأ القصة بصوته"
-            />
-            <OrbitCard
-              className="absolute top-1/2 left-[-2rem]"
-              dx={-1} dy={1}
-              tone="sky"
-              icon={<Icon.Heart size={18} />}
-              title="مزاج اليوم"
-              text="هادئ ومتركّز"
-            />
-
-            {/* Mascot */}
+            {/* Assistant chat card */}
             <div
-              className="absolute inset-0 grid place-items-center"
-              style={{ transform: "translate3d(calc(var(--mx) * -10px), calc(var(--my) * -10px), 0)" }}
+              className="surface-card relative z-10 overflow-hidden rounded-[28px] p-5"
+              style={{
+                transform: "translate3d(calc(var(--mx) * -8px), calc(var(--my) * -8px), 0)",
+                transition: "transform 0.4s var(--ease-spring)",
+              }}
             >
-              <div className="animate-float-slow">
-                <Mascot size={260} />
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div
+                    className="grid h-11 w-11 place-items-center rounded-2xl text-base font-extrabold text-white"
+                    style={{ background: "linear-gradient(135deg, var(--blue), var(--sky))" }}
+                  >
+                    AI
+                  </div>
+                  <div className="leading-tight">
+                    <div className="text-sm font-bold" style={{ color: "var(--text)" }}>
+                      مساعد إبني الذكي
+                    </div>
+                    <div className="text-[11px]" style={{ color: "var(--text-muted)" }}>
+                      متصل الآن
+                    </div>
+                  </div>
+                </div>
+                <span
+                  className="inline-flex h-7 items-center gap-1.5 rounded-full px-2.5 text-[10px] font-bold"
+                  style={{ background: "var(--green-light)", color: "var(--green)" }}
+                >
+                  <span className="h-1.5 w-1.5 rounded-full" style={{ background: "var(--green)" }} />
+                  Live
+                </span>
+              </div>
+
+              <div className="mt-4 rounded-2xl p-4 text-sm leading-relaxed"
+                style={{ background: "var(--blue-light)", color: "var(--text)" }}>
+                أحسنت يا أحمد! 🌟 لقد أتممت درس الرياضيات. هل تريد تجربة تحدي جديد؟
+              </div>
+
+              <div className="mt-3 flex items-center justify-between rounded-2xl p-3"
+                style={{ background: "var(--cream)", border: "1px solid var(--border-color)" }}>
+                <span className="flex items-center gap-2 text-xs font-semibold" style={{ color: "var(--text)" }}>
+                  <span>📈</span> تقدم اليوم
+                </span>
+                <span className="text-base font-extrabold gradient-text-warm" style={{ letterSpacing: "-0.02em" }}>
+                  ٨٥٪
+                </span>
+              </div>
+              <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full" style={{ background: "var(--border-color)" }}>
+                <div className="h-full rounded-full"
+                  style={{ width: "85%", background: "linear-gradient(90deg, var(--orange), var(--green))" }} />
               </div>
             </div>
 
-            {/* Floating mini chip */}
-            <div
-              className="absolute -bottom-4 left-1/2 -translate-x-1/2 inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold"
-              style={{
-                background: "var(--card-bg)",
-                border: "1px solid var(--border-color)",
-                boxShadow: "var(--shadow)",
-                color: "var(--text)",
-              }}
-            >
-              <Icon.Spark size={14} />
-              ٤٢ دقيقة تعلّم ذكي اليوم
-            </div>
+            {/* Floating chips around the card */}
+            <FloatChip
+              className="absolute -right-2 -top-3"
+              dx={-1} dy={-1}
+              emoji="🎮" title="ألعاب تعليمية" sub="+200 لعبة تفاعلية" tone="orange"
+            />
+            <FloatChip
+              className="absolute -left-3 top-1/3"
+              dx={-1} dy={1}
+              emoji="🧠" title="ذكاء اصطناعي" sub="تعلم مخصص لطفلك" tone="blue"
+            />
+            <FloatChip
+              className="absolute -bottom-4 right-3"
+              dx={1} dy={1}
+              emoji="🏆" title="نظام المكافآت" sub="اجمع النقاط!" tone="green"
+            />
           </div>
         </div>
       </div>
@@ -216,91 +210,49 @@ export function Hero() {
   );
 }
 
-function TrustChip({
-  icon,
-  text,
-  tone,
-}: {
-  icon: React.ReactNode;
-  text: string;
-  tone: "green" | "blue" | "orange";
-}) {
-  const fg = tone === "green" ? "var(--green)" : tone === "blue" ? "var(--blue)" : "var(--orange)";
+function TrustPill({ emoji, label, tone }: { emoji: string; label: string; tone: "green" | "blue" | "orange" }) {
   const bg =
     tone === "green" ? "var(--green-light)" : tone === "blue" ? "var(--blue-light)" : "var(--orange-light)";
+  const fg = tone === "green" ? "var(--green)" : tone === "blue" ? "var(--blue)" : "var(--orange)";
   return (
     <div
-      className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-bold"
+      className="flex items-center gap-2 rounded-2xl p-2.5 text-[12px] font-bold sm:text-[13px]"
       style={{ background: "var(--card-bg)", color: "var(--text)", border: "1px solid var(--border-color)" }}
     >
-      <span className="grid h-6 w-6 place-items-center rounded-full" style={{ background: bg, color: fg }}>
-        {icon}
+      <span
+        className="grid h-7 w-7 shrink-0 place-items-center rounded-xl text-base"
+        style={{ background: bg, color: fg }}
+      >
+        {emoji}
       </span>
-      {text}
+      <span className="leading-tight">{label}</span>
     </div>
   );
 }
 
-function OrbitCard({
-  icon,
-  title,
-  text,
-  className,
-  tone,
-  dx,
-  dy,
+function FloatChip({
+  emoji, title, sub, className, tone, dx, dy,
 }: {
-  icon: React.ReactNode;
-  title: string;
-  text: string;
-  className?: string;
-  tone: "orange" | "green" | "blue" | "sky";
-  dx: number;
-  dy: number;
+  emoji: string; title: string; sub: string; className?: string;
+  tone: "orange" | "green" | "blue"; dx: number; dy: number;
 }) {
-  const toneStyles =
-    tone === "orange"
-      ? { bg: "var(--orange-light)", fg: "var(--orange)" }
-      : tone === "green"
-      ? { bg: "var(--green-light)", fg: "var(--green)" }
-      : tone === "sky"
-      ? { bg: "var(--blue-light)", fg: "var(--sky)" }
-      : { bg: "var(--blue-light)", fg: "var(--blue)" };
-
+  const bg =
+    tone === "orange" ? "var(--orange-light)" : tone === "green" ? "var(--green-light)" : "var(--blue-light)";
   return (
     <div
-      className={`animate-float surface-card pointer-events-none flex max-w-[210px] items-center gap-3 rounded-2xl p-3 ${className ?? ""}`}
+      className={`animate-float surface-card pointer-events-none flex max-w-[180px] items-center gap-2.5 rounded-2xl p-2.5 ${className ?? ""}`}
       style={{
-        transform: `translate3d(calc(var(--mx) * ${dx * 22}px), calc(var(--my) * ${dy * 22}px), 0)`,
-        transition: "transform 0.4s var(--ease-spring)",
+        transform: `translate3d(calc(var(--mx) * ${dx * 16}px), calc(var(--my) * ${dy * 16}px), 0)`,
+        transition: "transform 0.5s var(--ease-spring)",
       }}
     >
-      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl" style={{ background: toneStyles.bg, color: toneStyles.fg }}>
-        {icon}
+      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl text-lg" style={{ background: bg }}>
+        {emoji}
       </span>
       <span className="flex flex-col leading-tight">
-        <span className="text-xs font-bold" style={{ color: "var(--text)" }}>{title}</span>
-        <span className="text-[11px]" style={{ color: "var(--text-muted)" }}>{text}</span>
+        <span className="text-[12px] font-extrabold" style={{ color: "var(--text)" }}>{title}</span>
+        <span className="text-[10px]" style={{ color: "var(--text-muted)" }}>{sub}</span>
       </span>
     </div>
-  );
-}
-
-function StoreButton({ store }: { store: "app" | "play" }) {
-  const isApp = store === "app";
-  return (
-    <a
-      href="#"
-      className="surface-card inline-flex items-center gap-3 rounded-2xl px-4 py-2.5"
-      aria-label={isApp ? "متوفر على App Store" : "متوفر على Google Play"}
-    >
-      <span style={{ color: "var(--text)" }}>{isApp ? <Icon.AppStore size={22} /> : <Icon.PlayStore size={22} />}</span>
-      <span className="flex flex-col leading-tight">
-        <span className="text-[10px]" style={{ color: "var(--text-muted)" }}>حمّل من</span>
-        <span className="text-sm font-bold" style={{ color: "var(--text)" }}>
-          {isApp ? "App Store" : "Google Play"}
-        </span>
-      </span>
-    </a>
   );
 }
