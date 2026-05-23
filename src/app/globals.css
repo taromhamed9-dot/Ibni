@@ -228,15 +228,22 @@ html, body {
   transform-origin: right; /* RTL */
   transform: scaleX(0);
   will-change: transform;
-  box-shadow: 0 0 18px rgba(243, 154, 31, 0.55), 0 0 6px rgba(107, 192, 75, 0.45);
+  /* Soft fade-out at the leading edge so the bar blends into the track */
+  -webkit-mask-image: linear-gradient(to left, #000 0%, #000 86%, transparent 100%);
+          mask-image: linear-gradient(to left, #000 0%, #000 86%, transparent 100%);
 }
 .top-progress > .bar::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0.45), transparent 60%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent 60%);
+  pointer-events: none;
 }
-html[dir="ltr"] .top-progress > .bar { transform-origin: left; }
+html[dir="ltr"] .top-progress > .bar {
+  transform-origin: left;
+  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 86%, transparent 100%);
+          mask-image: linear-gradient(to right, #000 0%, #000 86%, transparent 100%);
+}
 @keyframes bar-shine {
   to { background-position: -200% 0; }
 }

@@ -293,12 +293,34 @@ export const Icon = {
     </svg>
   ),
   PlayStore: ({ size = 20, ...p }: IconProps) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden focusable={false} className={p.className} {...p}>
-      <path d="M3.6 2.3A1.5 1.5 0 0 0 3 3.5v17a1.5 1.5 0 0 0 .6 1.2l9.62-9.7L3.6 2.3Z" fill="#34A853" />
-      <path d="m17.05 8.45-3.34-1.9-2.69 2.7 2.7 2.71 3.33-1.9a1.4 1.4 0 0 0 0-2.4l-.01-.01.01-.01v-.19Z" fill="#FBBC04" />
-      <path d="m3.6 2.3 9.62 9.7-2.7-2.7L3.6 2.3Z" fill="#EA4335" />
-      <path d="m3.6 21.7 9.62-9.7-2.7 2.7L3.6 21.7Z" fill="#4285F4" />
-      <path d="M13.71 17.45 17.05 15.55v-.01a1.4 1.4 0 0 0 .9-1.3 1.4 1.4 0 0 0-.9-1.3v-.01l-3.34-1.9-2.69 2.71 2.69 2.71Z" fill="#FBBC04" />
+    <svg width={size} height={size} viewBox="0 0 512 512" aria-hidden focusable={false} className={p.className} {...p}>
+      <path fill="#EA4335" d="M325.3 234.3 104.7 13.7c10.3-3.6 23.7-3.6 33.7 6.4l223.5 130.4-36.6 83.8z" />
+      <path fill="#FBBC04" d="m407.7 256-46-26.7-39-44.5 39-44.5L407.7 256z" />
+      <path fill="#4285F4" d="m325.3 277.7 36.6 83.8L138.4 491.9c-10 10-23.4 10-33.7 6.4l220.6-220.6z" />
+      <path fill="#34A853" d="M104.7 13.7c-4.4 1.8-7.8 4.8-10.8 8.8-3 4-4 9-4 14.4v438.2c0 5.4 1 10.4 4 14.4 3 4 6.4 7 10.8 8.8L325.3 277.7l-220.6-264z" />
+    </svg>
+  ),
+  FlagDZ: ({ size = 20, ...p }: IconProps) => (
+    <svg
+      width={(size as number) * 1.5}
+      height={size}
+      viewBox="0 0 60 40"
+      aria-hidden
+      focusable={false}
+      className={p.className}
+      style={{ borderRadius: 3, overflow: "hidden", ...(p.style as object) }}
+    >
+      <rect width="30" height="40" fill="#006233" />
+      <rect x="30" width="30" height="40" fill="#FFFFFF" />
+      <path
+        fillRule="evenodd"
+        fill="#D21034"
+        d="M30 12a8 8 0 1 0 0 16 8 8 0 1 0 0-16ZM30.6 13.6a6.4 6.4 0 1 1 0 12.8 6.4 6.4 0 1 1 0-12.8Z"
+      />
+      <path
+        fill="#D21034"
+        d="M33 16.4 33.82 18.86 36.43 18.86 34.33 20.39 35.12 22.95 33 21.36 30.88 22.95 31.67 20.39 29.57 18.86 32.18 18.86Z"
+      />
     </svg>
   ),
   Microphone: ({ size = 20, ...p }: IconProps) => (

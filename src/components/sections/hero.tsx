@@ -69,13 +69,8 @@ export function Hero() {
                 <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: "var(--green)" }} />
               </span>
               نبثّ من الجزائر
-              <span
-                className="ms-1 inline-flex h-[14px] w-[20px] overflow-hidden rounded-[3px]"
-                aria-label="DZ"
-                style={{ border: "1px solid var(--border-color)" }}
-              >
-                <span className="h-full flex-1" style={{ background: "#006233" }} />
-                <span className="h-full flex-1" style={{ background: "#fff" }} />
+              <span className="ms-1 inline-flex" aria-label="DZ">
+                <Icon.FlagDZ size={12} />
               </span>
             </span>
           </div>
