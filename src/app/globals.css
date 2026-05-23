@@ -222,9 +222,21 @@ html, body {
   position: relative;
   height: 100%;
   width: 100%;
-  background: linear-gradient(90deg, #F39A1F 0%, #FF6F61 30%, #6BC04B 70%, #43B8F0 100%);
+  /* Cyclic palette so the animated background loop has NO visible seam:
+     start and end colors are both orange, and the wave passes through
+     red → green → cyan → green → red → orange smoothly. */
+  background: linear-gradient(
+    90deg,
+    #F39A1F 0%,
+    #FF6F61 16%,
+    #6BC04B 33%,
+    #43B8F0 50%,
+    #6BC04B 67%,
+    #FF6F61 84%,
+    #F39A1F 100%
+  );
   background-size: 200% 100%;
-  animation: bar-shine 6s linear infinite;
+  animation: bar-shine 8s linear infinite;
   transform-origin: right; /* RTL */
   transform: scaleX(0);
   will-change: transform;

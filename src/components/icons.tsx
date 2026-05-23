@@ -1,4 +1,5 @@
 import type { SVGProps } from "react";
+import Image from "next/image";
 
 type IconProps = SVGProps<SVGSVGElement> & { size?: number };
 
@@ -293,36 +294,56 @@ export const Icon = {
     </svg>
   ),
   PlayStore: ({ size = 20, ...p }: IconProps) => (
-    <svg width={size} height={size} viewBox="0 0 512 512" aria-hidden focusable={false} className={p.className} {...p}>
-      <path fill="#EA4335" d="M325.3 234.3 104.7 13.7c10.3-3.6 23.7-3.6 33.7 6.4l223.5 130.4-36.6 83.8z" />
-      <path fill="#FBBC04" d="m407.7 256-46-26.7-39-44.5 39-44.5L407.7 256z" />
-      <path fill="#4285F4" d="m325.3 277.7 36.6 83.8L138.4 491.9c-10 10-23.4 10-33.7 6.4l220.6-220.6z" />
-      <path fill="#34A853" d="M104.7 13.7c-4.4 1.8-7.8 4.8-10.8 8.8-3 4-4 9-4 14.4v438.2c0 5.4 1 10.4 4 14.4 3 4 6.4 7 10.8 8.8L325.3 277.7l-220.6-264z" />
-    </svg>
-  ),
-  FlagDZ: ({ size = 20, ...p }: IconProps) => (
     <svg
-      width={(size as number) * 1.5}
+      width={size}
       height={size}
-      viewBox="0 0 60 40"
+      viewBox="0 0 256 256"
       aria-hidden
       focusable={false}
       className={p.className}
-      style={{ borderRadius: 3, overflow: "hidden", ...(p.style as object) }}
+      {...p}
     >
-      <rect width="30" height="40" fill="#006233" />
-      <rect x="30" width="30" height="40" fill="#FFFFFF" />
-      <path
-        fillRule="evenodd"
-        fill="#D21034"
-        d="M30 12a8 8 0 1 0 0 16 8 8 0 1 0 0-16ZM30.6 13.6a6.4 6.4 0 1 1 0 12.8 6.4 6.4 0 1 1 0-12.8Z"
-      />
-      <path
-        fill="#D21034"
-        d="M33 16.4 33.82 18.86 36.43 18.86 34.33 20.39 35.12 22.95 33 21.36 30.88 22.95 31.67 20.39 29.57 18.86 32.18 18.86Z"
-      />
+      <defs>
+        <linearGradient id="ps-green" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stopColor="#00C170" />
+          <stop offset="1" stopColor="#018A55" />
+        </linearGradient>
+        <linearGradient id="ps-red" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stopColor="#FF3A44" />
+          <stop offset="1" stopColor="#C7191F" />
+        </linearGradient>
+        <linearGradient id="ps-blue" x1="0" x2="1" y1="1" y2="1">
+          <stop offset="0" stopColor="#00D2FF" />
+          <stop offset="1" stopColor="#0571E0" />
+        </linearGradient>
+        <linearGradient id="ps-yellow" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stopColor="#FFD400" />
+          <stop offset="1" stopColor="#FF9100" />
+        </linearGradient>
+      </defs>
+      {/* Green wedge (left, the play button's left edge) */}
+      <path fill="url(#ps-green)" d="M30 18c-4 2-6 6-6 12v196c0 6 2 10 6 12l108-110L30 18Z" />
+      {/* Red wedge (top half) */}
+      <path fill="url(#ps-red)" d="M30 18c4-2 9-2 14 1l151 86-57 33L30 18Z" />
+      {/* Blue wedge (bottom half) */}
+      <path fill="url(#ps-blue)" d="M30 238c4 2 9 2 14-1l151-86-57-33L30 238Z" />
+      {/* Yellow tip (right point) */}
+      <path fill="url(#ps-yellow)" d="m195 105 36 20c10 6 10 21 0 27l-36 20-57-33 57-34Z" />
     </svg>
   ),
+  FlagDZ: ({ size = 20, ...p }: IconProps) => {
+    const w = Math.round((size as number) * 1.5);
+    return (
+      <Image
+        src="/flag-dz.png"
+        alt="علم الجزائر"
+        width={w}
+        height={size as number}
+        className={p.className}
+        style={{ borderRadius: 3, display: "inline-block", verticalAlign: "middle", objectFit: "cover" }}
+      />
+    );
+  },
   Microphone: ({ size = 20, ...p }: IconProps) => (
     <svg {...base(size, p.className)} {...p}>
       <rect x="9" y="3" width="6" height="11" rx="3" />
