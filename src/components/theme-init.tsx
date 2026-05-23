@@ -2,9 +2,9 @@
 export function ThemeInit() {
   const code = `(() => {
     try {
+      // Light is the default; only switch to dark if the user has explicitly chosen it.
       var stored = localStorage.getItem('theme');
-      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      var theme = stored || (prefersDark ? 'dark' : 'light');
+      var theme = stored === 'dark' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', theme);
     } catch (e) {
       document.documentElement.setAttribute('data-theme', 'light');

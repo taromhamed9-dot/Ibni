@@ -11,10 +11,9 @@ export function ThemeToggle() {
 
   useEffect(() => {
     setMounted(true);
+    // Light is the default; only honor 'dark' if the user explicitly chose it.
     const stored = (typeof window !== "undefined" && (localStorage.getItem("theme") as Theme | null)) || null;
-    const systemPrefersDark =
-      typeof window !== "undefined" && window.matchMedia?.("(prefers-color-scheme: dark)").matches;
-    const initial: Theme = stored ?? (systemPrefersDark ? "dark" : "light");
+    const initial: Theme = stored === "dark" ? "dark" : "light";
     setTheme(initial);
     document.documentElement.setAttribute("data-theme", initial);
   }, []);

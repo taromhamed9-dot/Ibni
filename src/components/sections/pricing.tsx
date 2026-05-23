@@ -138,7 +138,7 @@ export function Pricing() {
                       ? {
                           background: "linear-gradient(180deg, var(--orange-light), var(--card-bg) 60%)",
                           border: "2px solid var(--orange)",
-                          boxShadow: "0 16px 56px rgba(243, 154, 31, 0.18)",
+                          boxShadow: "0 16px 56px rgba(20, 184, 166, 0.18)",
                         }
                       : {
                           background: "var(--card-bg)",

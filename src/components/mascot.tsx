@@ -18,15 +18,15 @@ export function Mascot({ size = 220 }: { size?: number }) {
           <stop offset="1" stopColor="#FFE7C2" />
         </linearGradient>
         <radialGradient id="m-cheek" cx="0.5" cy="0.5" r="0.5">
-          <stop offset="0" stopColor="#F39A1F" stopOpacity="0.55" />
-          <stop offset="1" stopColor="#F39A1F" stopOpacity="0" />
+          <stop offset="0" stopColor="#14B8A6" stopOpacity="0.55" />
+          <stop offset="1" stopColor="#14B8A6" stopOpacity="0" />
         </radialGradient>
       </defs>
 
       {/* antenna */}
       <g>
         <line x1="120" y1="20" x2="120" y2="48" stroke="#0E3D7B" strokeWidth="4" strokeLinecap="round" />
-        <circle cx="120" cy="16" r="8" fill="#F39A1F" />
+        <circle cx="120" cy="16" r="8" fill="#14B8A6" />
         <circle cx="120" cy="16" r="3" fill="#FFFAF1" />
       </g>
 
@@ -38,7 +38,7 @@ export function Mascot({ size = 220 }: { size?: number }) {
       {/* dashboard mini graphs */}
       <g stroke="#0E3D7B" strokeWidth="3" strokeLinecap="round" fill="none">
         <path d="M76 156 L92 142 L108 150 L124 134 L140 144 L164 128" />
-        <circle cx="164" cy="128" r="4" fill="#F39A1F" stroke="none" />
+        <circle cx="164" cy="128" r="4" fill="#14B8A6" stroke="none" />
       </g>
       <g fill="#6BC04B">
         <rect x="76" y="166" width="8" height="6" rx="2" />

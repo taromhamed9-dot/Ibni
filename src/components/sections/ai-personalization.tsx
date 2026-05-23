@@ -257,10 +257,10 @@ function ChatBubble({ side, children }: { side: "me" | "them"; children: ReactNo
   const bubbleStyle: React.CSSProperties = isMe
     ? {
         // me on LEFT → sharp top-LEFT corner (top + inline-end in RTL)
-        background: "linear-gradient(135deg, var(--orange), #ff8a3d)",
+        background: "linear-gradient(135deg, var(--orange), #2DD4BF)",
         color: "#fff",
         borderStartEndRadius: 6,
-        boxShadow: "0 6px 18px -8px rgba(243, 154, 31, 0.45)",
+        boxShadow: "0 6px 18px -8px rgba(20, 184, 166, 0.45)",
       }
     : {
         // them on RIGHT → sharp top-RIGHT corner (top + inline-start in RTL)
@@ -288,7 +288,7 @@ function TypingBubble({ side }: { side: "me" | "them" }) {
     ? { marginInlineStart: "auto" }
     : { marginInlineEnd: "auto" };
   const bubbleStyle: React.CSSProperties = isMe
-    ? { background: "linear-gradient(135deg, var(--orange), #ff8a3d)", borderStartEndRadius: 6, color: "#fff" }
+    ? { background: "linear-gradient(135deg, var(--orange), #2DD4BF)", borderStartEndRadius: 6, color: "#fff" }
     : { background: "var(--blue-light)", borderStartStartRadius: 6, color: "var(--text)" };
   return (
     <div className="chat-row" style={wrapStyle}>
