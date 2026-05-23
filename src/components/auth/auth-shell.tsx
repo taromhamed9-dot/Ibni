@@ -21,11 +21,11 @@ export function AuthShell({
 }) {
   return (
     <>
-      <section className="relative min-h-[calc(100vh-5rem)]">
-        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -top-32 right-[-10rem] h-96 w-96 rounded-full opacity-40 blur-3xl"
+      <section className="relative min-h-[calc(100vh-5rem)] overflow-hidden">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+          <div className="absolute -top-32 right-[-6rem] h-72 w-72 rounded-full opacity-40 blur-3xl md:right-[-10rem] md:h-96 md:w-96"
             style={{ background: "radial-gradient(closest-side, var(--orange-light), transparent 70%)" }} />
-          <div className="absolute -bottom-40 left-[-10rem] h-96 w-96 rounded-full opacity-40 blur-3xl"
+          <div className="absolute -bottom-40 left-[-6rem] h-72 w-72 rounded-full opacity-40 blur-3xl md:left-[-10rem] md:h-96 md:w-96"
             style={{ background: "radial-gradient(closest-side, var(--blue-light), transparent 70%)" }} />
           <div className="absolute inset-0 dotted-grid opacity-25" />
         </div>
