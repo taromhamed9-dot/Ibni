@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Icon } from "@/components/icons";
 
 export function StickyCTA() {
   const [show, setShow] = useState(false);
@@ -28,9 +29,9 @@ export function StickyCTA() {
   return (
     <div className="sticky-cta" data-show={show ? "true" : "false"} aria-hidden={!show}>
       <Link href="/signup" className="sticky-cta-btn">
-        <span aria-hidden>🚀</span>
+        <span aria-hidden className="inline-flex"><Icon.Rocket size={16} /></span>
         ابدأ مجاناً
-        <span className="sticky-cta-pill">١٤ يوم</span>
+        <span className="sticky-cta-pill">14 يوم</span>
       </Link>
     </div>
   );

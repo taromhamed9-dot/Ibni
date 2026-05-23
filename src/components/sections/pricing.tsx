@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Reveal } from "../reveal";
+import { Icon } from "@/components/icons";
 
 type Cycle = "monthly" | "yearly";
 
 const PLANS = [
   {
     id: "free",
-    emoji: "🌱",
+    Icon: Icon.Tree,
     name: "المجاني",
     tag: "ابدأ رحلة طفلك التعليمية بدون أي تكلفة",
     monthly: 0,
@@ -17,8 +18,8 @@ const PLANS = [
     cta: { label: "ابدأ مجاناً", href: "/signup" },
     highlight: false,
     perks: [
-      "٥ ألعاب تعليمية",
-      "٣ قصص تفاعلية",
+      "5 ألعاب تعليمية",
+      "3 قصص تفاعلية",
       "تتبع أساسي للتقدم",
       "حساب طفل واحد",
       "محتوى محدود يومياً",
@@ -26,7 +27,7 @@ const PLANS = [
   },
   {
     id: "family",
-    emoji: "👨‍👩‍👧‍👦",
+    Icon: Icon.Family,
     name: "العائلي",
     tag: "الخطة المثالية لكل عائلة جزائرية",
     monthly: 2990,
@@ -34,10 +35,10 @@ const PLANS = [
     cta: { label: "اشترك الآن", href: "/signup?plan=family" },
     highlight: true,
     perks: [
-      "جميع الألعاب التعليمية (+٢٠٠)",
-      "جميع القصص التفاعلية (+٥٠٠)",
+      "جميع الألعاب التعليمية (+200)",
+      "جميع القصص التفاعلية (+500)",
       "ذكاء اصطناعي مخصص",
-      "حتى ٣ حسابات أطفال",
+      "حتى 3 حسابات أطفال",
       "لوحة تحكم الأولياء الكاملة",
       "تقارير أسبوعية ذكية",
       "بدون إعلانات",
@@ -46,7 +47,7 @@ const PLANS = [
   },
   {
     id: "school",
-    emoji: "🏫",
+    Icon: Icon.School,
     name: "المدرسي",
     tag: "للمدارس والمؤسسات التعليمية",
     monthly: 9990,
@@ -55,7 +56,7 @@ const PLANS = [
     highlight: false,
     perks: [
       "كل مميزات الخطة العائلية",
-      "حتى ٥٠ حساب طالب",
+      "حتى 50 حساب طالب",
       "لوحة تحكم المعلم",
       "فصول افتراضية",
       "تقارير مفصلة لكل طالب",
@@ -77,20 +78,20 @@ export function Pricing() {
             className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest"
             style={{ background: "var(--blue-light)", color: "var(--blue)" }}
           >
-            <span>💎</span> خطط الاشتراك
+            <Icon.Cube size={12} /> خطط الاشتراك
           </span>
           <h2 className="display-xl mt-4 text-3xl sm:text-4xl md:text-5xl" style={{ color: "var(--text)" }}>
             استثمر في{" "}
             <span className="gradient-text-warm">مستقبل طفلك</span>
           </h2>
           <p className="mt-4 text-[15px] leading-relaxed sm:text-base md:text-lg" style={{ color: "var(--text-muted)" }}>
-            اختر الخطة المناسبة لعائلتك — جميع الخطط تتضمن ضمان استرداد لمدة ٣٠ يوماً.
+            اختر الخطة المناسبة لعائلتك — جميع الخطط تتضمن ضمان استرداد لمدة 30 يوماً.
           </p>
         </Reveal>
 
         {/* Cycle toggle */}
         <Reveal delay={120}>
-          <div className="mx-auto mt-7 inline-flex items-center gap-1 rounded-full p-1.5 max-w-[300px]"
+          <div className="mx-auto mt-7 inline-flex items-center gap-1 rounded-full p-1.5 max-w-[320px]"
             style={{ background: "var(--card-bg)", border: "1px solid var(--border-color)", display: "flex" }}>
             <button
               type="button"
@@ -119,7 +120,7 @@ export function Pricing() {
                 className="ml-1 rounded-full px-1.5 py-0.5 text-[9px] font-extrabold"
                 style={{ background: "var(--orange)", color: "#fff" }}
               >
-                وفّر ٣٠٪
+                وفّر 30%
               </span>
             </button>
           </div>
@@ -148,17 +149,21 @@ export function Pricing() {
                 >
                   {p.highlight && (
                     <span
-                      className="absolute -top-px left-1/2 -translate-x-1/2 rounded-b-2xl px-3 py-1 text-[10px] font-extrabold"
+                      className="absolute -top-px left-1/2 -translate-x-1/2 inline-flex items-center gap-1 rounded-b-2xl px-3 py-1 text-[10px] font-extrabold"
                       style={{ background: "var(--orange)", color: "#fff" }}
                     >
-                      ⭐ الأكثر اختياراً
+                      <Icon.Star size={10} />
+                      الأكثر اختياراً
                     </span>
                   )}
 
                   <div className="flex items-center gap-3">
-                    <span className="grid h-12 w-12 place-items-center rounded-2xl text-2xl"
-                      style={{ background: p.highlight ? "color-mix(in srgb, var(--orange) 18%, transparent)" : "var(--blue-light)" }}>
-                      {p.emoji}
+                    <span className="grid h-12 w-12 place-items-center rounded-2xl"
+                      style={{
+                        background: p.highlight ? "color-mix(in srgb, var(--orange) 18%, transparent)" : "var(--blue-light)",
+                        color: p.highlight ? "var(--orange)" : "var(--blue)",
+                      }}>
+                      <p.Icon size={24} />
                     </span>
                     <div className="leading-tight">
                       <div className="text-lg font-extrabold sm:text-xl" style={{ color: "var(--text)" }}>{p.name}</div>
@@ -168,25 +173,27 @@ export function Pricing() {
 
                   <div className="mt-5 flex items-baseline gap-1">
                     <span className="display-xl text-4xl sm:text-5xl" style={{ color: "var(--text)" }}>
-                      {price === 0 ? "مجاناً" : price.toLocaleString("ar-EG")}
+                      {price === 0 ? "مجاناً" : price.toLocaleString("en-US")}
                     </span>
                     {price > 0 && (
                       <span className="text-sm font-bold" style={{ color: "var(--text-muted)" }}>
-                        دج / {cycle === "yearly" ? "شهرياً" : "شهرياً"}
+                        دج / شهرياً
                       </span>
                     )}
                   </div>
                   {price > 0 && cycle === "yearly" && (
                     <p className="mt-1 text-[12px] font-bold" style={{ color: "var(--green)" }}>
-                      توفير ٣٠٪ مع الاشتراك السنوي
+                      توفير 30% مع الاشتراك السنوي
                     </p>
                   )}
 
                   <ul className="mt-5 space-y-2.5">
                     {p.perks.map((perk, j) => (
                       <li key={j} className="flex items-start gap-2 text-[13px] sm:text-sm" style={{ color: "var(--text)" }}>
-                        <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full text-[10px] font-extrabold text-white"
-                          style={{ background: p.highlight ? "var(--orange)" : "var(--green)" }}>✓</span>
+                        <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full text-white"
+                          style={{ background: p.highlight ? "var(--orange)" : "var(--green)" }}>
+                          <Icon.Check size={12} />
+                        </span>
                         {perk}
                       </li>
                     ))}
@@ -212,11 +219,11 @@ export function Pricing() {
               background: "var(--green-light)",
               color: "var(--green)",
               border: "1px solid color-mix(in srgb, var(--green) 25%, transparent)",
-              maxWidth: 540,
+              maxWidth: 560,
             }}
           >
-            <span>🛡️</span>
-            ضمان استرداد كامل خلال ٣٠ يوماً — بدون أي أسئلة.
+            <Icon.Shield size={16} />
+            ضمان استرداد كامل خلال 30 يوماً — بدون أي أسئلة.
           </div>
         </Reveal>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { Reveal } from "../reveal";
+import { Icon } from "@/components/icons";
 
 const TESTIMONIALS = [
   {
@@ -8,7 +9,7 @@ const TESTIMONIALS = [
       "تغيّر ابني تماماً منذ بدأنا مع إبني. أصبح متشوقاً للتعلم بدلاً من الألعاب الفارغة. ألاحظ تحسناً واضحاً في تركيزه ولغته العربية. منصة استثنائية!",
     name: "أم محمد",
     role: "والدة، الجزائر العاصمة",
-    avatar: "👩🏻",
+    initial: "م",
     badge: "تحوّل إيجابي",
     tone: "orange",
   },
@@ -17,7 +18,7 @@ const TESTIMONIALS = [
       "كأم عاملة، إبني أعطاني راحة بال حقيقية. أعرف أن بنتي تتعلم في بيئة آمنة، وتقارير المنصة تساعدني أعرف نقاط قوّتها وضعفها بدون متابعة مرهقة.",
     name: "د. فاطمة بن علي",
     role: "والدة وطبيبة، وهران",
-    avatar: "👩🏻‍⚕️",
+    initial: "ف",
     badge: "راحة بال",
     tone: "green",
   },
@@ -26,7 +27,7 @@ const TESTIMONIALS = [
       "كمعلّم، استعملت إبني في الفصل وكانت النتيجة مذهلة. التلاميذ يحبّون الذكاء الاصطناعي، والقصص العربية رفعت مستوى القراءة بشكل ملحوظ.",
     name: "أ. كريم زرڨي",
     role: "معلّم ابتدائي، قسنطينة",
-    avatar: "👨🏻‍🏫",
+    initial: "ك",
     badge: "نتائج مذهلة",
     tone: "blue",
   },
@@ -47,7 +48,7 @@ export function Testimonials() {
             className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest"
             style={{ background: "var(--orange-light)", color: "var(--orange)" }}
           >
-            <span>💬</span> قالوا عن إبني
+            <Icon.Chat size={12} /> قالوا عن إبني
           </span>
           <h2 className="display-xl mt-4 text-3xl sm:text-4xl md:text-5xl" style={{ color: "var(--text)" }}>
             آلاف الأولياء{" "}
@@ -68,17 +69,21 @@ export function Testimonials() {
                     className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-extrabold"
                     style={{ background: tone.bg, color: tone.fg }}
                   >
-                    <span>✨</span> {t.badge}
+                    <Icon.Sparkles size={10} /> {t.badge}
                   </span>
-                  <div aria-hidden className="mt-3 text-3xl leading-none" style={{ color: tone.fg }}>“</div>
+                  <div aria-hidden className="mt-3" style={{ color: tone.fg }}>
+                    <Icon.Quote size={28} />
+                  </div>
                   <p className="mt-1 text-[14px] leading-relaxed sm:text-[15px]" style={{ color: "var(--text)" }}>
                     {t.quote}
                   </p>
                   <div className="mt-5 flex items-center justify-between border-t pt-4" style={{ borderColor: "var(--border-color)" }}>
                     <div className="flex items-center gap-3">
-                      <span className="grid h-10 w-10 place-items-center rounded-2xl text-xl"
-                        style={{ background: tone.bg }}>
-                        {t.avatar}
+                      <span
+                        className="grid h-10 w-10 place-items-center rounded-2xl text-base font-extrabold"
+                        style={{ background: tone.bg, color: tone.fg }}
+                      >
+                        {t.initial}
                       </span>
                       <div className="leading-tight">
                         <div className="text-sm font-extrabold" style={{ color: "var(--text)" }}>
@@ -89,8 +94,12 @@ export function Testimonials() {
                         </div>
                       </div>
                     </div>
-                    <div className="text-[14px]" style={{ color: "var(--orange)" }}>
-                      ⭐⭐⭐⭐⭐
+                    <div className="flex items-center gap-0.5" style={{ color: "var(--orange)" }} aria-label="تقييم 5 من 5">
+                      <Icon.StarFilled size={14} />
+                      <Icon.StarFilled size={14} />
+                      <Icon.StarFilled size={14} />
+                      <Icon.StarFilled size={14} />
+                      <Icon.StarFilled size={14} />
                     </div>
                   </div>
                 </div>

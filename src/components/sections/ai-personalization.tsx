@@ -1,30 +1,83 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Reveal } from "../reveal";
+import { Icon } from "@/components/icons";
 
-const SCRIPT = [
-  { side: "them" as const, text: "مرحباً ليان! 🌸 جاهزة لتحدّي اليوم؟" },
-  { side: "me" as const, text: "جاهزة! 🚀" },
-  { side: "them" as const, text: "ممتاز! لاحظتُ أنكِ قويّة في الأرقام. سنبدأ بلغز رياضيات صغير، ثم قصة قصيرة." },
-  { side: "them" as const, text: "🧮  ٣ + ٥ = ؟" },
-  { side: "me" as const, text: "٨ 💡" },
-  { side: "them" as const, text: "أحسنتِ! +٢٥ نقطة ⭐ هل ننتقل إلى القصة؟" },
+type Part = string | ReactNode;
+type Msg = { side: "them" | "me"; parts: Part[] };
+
+/** Wrap numbers / arithmetic in LTR to prevent mirroring inside RTL text. */
+function Num({ children }: { children: ReactNode }) {
+  return (
+    <bdi dir="ltr" style={{ unicodeBidi: "isolate" }}>
+      {children}
+    </bdi>
+  );
+}
+
+const SCRIPT: Msg[] = [
+  {
+    side: "them",
+    parts: [
+      <Icon.Sparkles key="s1" size={14} />,
+      " مرحباً ليان! جاهزة لتحدّي اليوم؟",
+    ],
+  },
+  {
+    side: "me",
+    parts: [
+      "جاهزة! ",
+      <Icon.Rocket key="s2" size={14} />,
+    ],
+  },
+  {
+    side: "them",
+    parts: [
+      "ممتاز! لاحظتُ أنكِ قويّة في الأرقام. سنبدأ بلغز رياضيات صغير، ثم قصة قصيرة.",
+    ],
+  },
+  {
+    side: "them",
+    parts: [
+      <Icon.Cube key="s3" size={14} />,
+      " ",
+      <Num key="n1">3 + 5 = ؟</Num>,
+    ],
+  },
+  {
+    side: "me",
+    parts: [
+      <Num key="n2">8</Num>,
+      " ",
+      <Icon.Lightning key="s4" size={14} />,
+    ],
+  },
+  {
+    side: "them",
+    parts: [
+      "أحسنتِ! ",
+      <Num key="n3">+25</Num>,
+      " نقطة ",
+      <Icon.Star key="s5" size={14} />,
+      " — هل ننتقل إلى القصة؟",
+    ],
+  },
 ];
 
 const AI_FEATURES = [
-  { emoji: "🎯", title: "تعلم مخصص", text: "يتكيف المحتوى تلقائياً مع مستوى طفلك وسرعة تعلمه." },
-  { emoji: "📊", title: "تحليل ذكي", text: "تقارير مفصلة عن نقاط القوة والمجالات التي تحتاج تعزيز." },
-  { emoji: "🗣️", title: "تفاعل صوتي", text: "مساعد صوتي يتحدث العربية يرافق طفلك في رحلة التعلم." },
-  { emoji: "📝", title: "واجبات ذكية", text: "تمارين وواجبات تتولد تلقائياً بناءً على احتياجات الطفل." },
-  { emoji: "🌙", title: "قصص مولّدة بالذكاء", text: "قصص تعليمية فريدة يولدها الذكاء الاصطناعي لكل طفل." },
-  { emoji: "🔒", title: "حماية ذكية", text: "فلترة محتوى متقدمة تضمن بيئة آمنة 100% لطفلك." },
+  { Icon: Icon.Target, title: "تعلم مخصص", text: "يتكيف المحتوى تلقائياً مع مستوى طفلك وسرعة تعلمه." },
+  { Icon: Icon.ChartBar, title: "تحليل ذكي", text: "تقارير مفصلة عن نقاط القوة والمجالات التي تحتاج تعزيز." },
+  { Icon: Icon.Microphone, title: "تفاعل صوتي", text: "مساعد صوتي يتحدث العربية يرافق طفلك في رحلة التعلم." },
+  { Icon: Icon.Pencil, title: "واجبات ذكية", text: "تمارين وواجبات تتولد تلقائياً بناءً على احتياجات الطفل." },
+  { Icon: Icon.BookSparkle, title: "قصص مولّدة بالذكاء", text: "قصص تعليمية فريدة يولدها الذكاء الاصطناعي لكل طفل." },
+  { Icon: Icon.Lock, title: "حماية ذكية", text: "فلترة محتوى متقدمة تضمن بيئة آمنة 100% لطفلك." },
 ];
 
 function ChatPreview() {
   const ref = useRef<HTMLDivElement | null>(null);
   const [visibleCount, setVisibleCount] = useState(0);
-  const [typing, setTyping] = useState(false);
+  const [typing, setTyping] = useState<"them" | "me" | null>(null);
   const startedRef = useRef(false);
 
   useEffect(() => {
@@ -36,29 +89,24 @@ function ChatPreview() {
           if (e.isIntersecting && !startedRef.current) {
             startedRef.current = true;
             io.unobserve(el);
-            // Walk through messages with typing indicator before "them" messages.
             let i = 0;
             const next = () => {
               if (i >= SCRIPT.length) {
-                setTyping(false);
+                setTyping(null);
                 return;
               }
-              const isThem = SCRIPT[i].side === "them";
-              if (isThem) {
-                setTyping(true);
-                setTimeout(() => {
-                  setTyping(false);
-                  setVisibleCount((c) => c + 1);
-                  i++;
-                  setTimeout(next, 650);
-                }, 750);
-              } else {
+              const m = SCRIPT[i];
+              setTyping(m.side);
+              const typingMs = m.side === "them" ? 1300 : 800;
+              setTimeout(() => {
+                setTyping(null);
                 setVisibleCount((c) => c + 1);
                 i++;
-                setTimeout(next, 700);
-              }
+                const gap = m.side === "them" ? 1000 : 1100;
+                setTimeout(next, gap);
+              }, typingMs);
             };
-            setTimeout(next, 500);
+            setTimeout(next, 700);
           }
         });
       },
@@ -70,6 +118,7 @@ function ChatPreview() {
 
   return (
     <div ref={ref} className="surface-card relative overflow-hidden rounded-[28px] p-5 sm:p-6">
+      {/* Header */}
       <div className="flex items-center gap-3">
         <div
           className="grid h-12 w-12 place-items-center rounded-2xl text-base font-extrabold text-white"
@@ -81,39 +130,55 @@ function ChatPreview() {
           <div className="text-sm font-extrabold" style={{ color: "var(--text)" }}>
             مساعد إبني الذكي
           </div>
-          <div className="text-[11px]" style={{ color: "var(--text-muted)" }}>
-            متصل {typing ? "· يكتب الآن…" : ""}
+          <div className="flex items-center gap-1.5 text-[11px]" style={{ color: "var(--text-muted)" }}>
+            <span className="relative inline-flex h-1.5 w-1.5">
+              <span className="absolute inset-0 animate-ping rounded-full" style={{ background: "var(--green)" }} />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full" style={{ background: "var(--green)" }} />
+            </span>
+            {typing ? "يكتب الآن…" : "متصل الآن"}
           </div>
         </div>
-        <span className="ml-auto rounded-full px-2.5 py-1 text-[10px] font-extrabold" style={{ background: "var(--green-light)", color: "var(--green)" }}>
+        <span
+          className="ms-auto inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-extrabold"
+          style={{ background: "var(--green-light)", color: "var(--green)" }}
+        >
+          <Icon.Pulse size={10} />
           Live
         </span>
       </div>
 
-      <div className="mt-5 flex min-h-[280px] flex-col gap-3">
+      {/* Bubbles */}
+      <div className="mt-5 flex min-h-[300px] flex-col gap-3">
         {SCRIPT.slice(0, visibleCount).map((m, k) => (
-          <ChatBubble key={k} side={m.side}>{m.text}</ChatBubble>
-        ))}
-        {typing && (
-          <div className="flex justify-start">
-            <div
-              className="rounded-2xl px-3.5 py-2.5"
-              style={{ background: "var(--blue-light)", borderTopLeftRadius: 6 }}
-            >
-              <span className="typing-dots" aria-label="يكتب">
-                <span /><span /><span />
+          <ChatBubble key={k} side={m.side}>
+            {m.parts.map((p, j) => (
+              <span key={j} className="inline-flex items-center align-middle">
+                {p}
               </span>
-            </div>
+            ))}
+          </ChatBubble>
+        ))}
+        {typing && <TypingBubble side={typing} />}
+        {visibleCount === 0 && !typing && (
+          <div className="m-auto flex flex-col items-center gap-2 text-[12px]" style={{ color: "var(--text-muted)" }}>
+            <span className="grid h-9 w-9 place-items-center rounded-full" style={{ background: "var(--blue-light)", color: "var(--blue)" }}>
+              <Icon.Chat size={16} />
+            </span>
+            جلسة اليوم على وشك أن تبدأ…
           </div>
         )}
       </div>
 
+      {/* Progress widget */}
       <div className="mt-5 flex items-center justify-between rounded-2xl p-3"
         style={{ background: "var(--cream)", border: "1px solid var(--border-color)" }}>
         <span className="flex items-center gap-2 text-xs font-bold" style={{ color: "var(--text)" }}>
-          <span className="emoji-bounce">📈</span> تقدم اليوم
+          <span style={{ color: "var(--green)" }}><Icon.TrendingUp size={14} /></span>
+          تقدم اليوم
         </span>
-        <span className="gradient-text-warm text-base font-extrabold" style={{ letterSpacing: "-0.02em" }}>٨٥٪</span>
+        <span className="gradient-text-warm text-base font-extrabold" style={{ letterSpacing: "-0.02em" }}>
+          <Num>85%</Num>
+        </span>
       </div>
       <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full" style={{ background: "var(--border-color)" }}>
         <div className="h-full rounded-full" style={{ width: "85%", background: "linear-gradient(90deg, var(--orange), var(--green))" }} />
@@ -143,7 +208,7 @@ export function AIPersonalization() {
               className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest"
               style={{ background: "var(--blue-light)", color: "var(--blue)" }}
             >
-              <span>🧠</span> مدعوم بالذكاء الاصطناعي
+              <Icon.Brain size={12} /> مدعوم بالذكاء الاصطناعي
             </span>
             <h2 className="display-xl mt-4 text-3xl sm:text-4xl md:text-5xl" style={{ color: "var(--text)" }}>
               تعليم ذكي{" "}
@@ -151,7 +216,7 @@ export function AIPersonalization() {
             </h2>
             <p className="mt-4 text-[15px] leading-relaxed sm:text-base md:text-lg" style={{ color: "var(--text-muted)" }}>
               يستخدم إبني أحدث تقنيات الذكاء الاصطناعي لفهم أسلوب تعلم كل طفل وتقديم تجربة تعليمية مخصصة بالكامل —
-              كأنه معلّم خاص لطفلك يعمل ٢٤/٧.
+              كأنه معلّم خاص لطفلك يعمل <Num>24/7</Num>.
             </p>
           </Reveal>
 
@@ -162,9 +227,9 @@ export function AIPersonalization() {
                   className="flex items-start gap-3 rounded-2xl p-4"
                   style={{ background: "var(--card-bg)", border: "1px solid var(--border-color)" }}
                 >
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl text-xl"
-                    style={{ background: "var(--blue-light)" }}>
-                    {f.emoji}
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl"
+                    style={{ background: "var(--blue-light)", color: "var(--blue)" }}>
+                    <f.Icon size={20} />
                   </span>
                   <div className="leading-snug">
                     <div className="text-sm font-extrabold" style={{ color: "var(--text)" }}>{f.title}</div>
@@ -180,19 +245,57 @@ export function AIPersonalization() {
   );
 }
 
-function ChatBubble({ side, children }: { side: "me" | "them"; children: React.ReactNode }) {
+function ChatBubble({ side, children }: { side: "me" | "them"; children: ReactNode }) {
   const isMe = side === "me";
+  // them = bubble on RIGHT (next to AI avatar) — push with marginInlineStart auto
+  // me   = bubble on LEFT — push with marginInlineEnd auto
+  // RTL layout: them on RIGHT (near AI avatar), me on LEFT
+  const wrapStyle: React.CSSProperties = isMe
+    ? { marginInlineStart: "auto", maxWidth: "82%" }   // me → pushed to LEFT in RTL
+    : { marginInlineEnd: "auto", maxWidth: "82%" };    // them → pushed to RIGHT in RTL
+
+  const bubbleStyle: React.CSSProperties = isMe
+    ? {
+        // me on LEFT → sharp top-LEFT corner (top + inline-end in RTL)
+        background: "linear-gradient(135deg, var(--orange), #ff8a3d)",
+        color: "#fff",
+        borderStartEndRadius: 6,
+        boxShadow: "0 6px 18px -8px rgba(243, 154, 31, 0.45)",
+      }
+    : {
+        // them on RIGHT → sharp top-RIGHT corner (top + inline-start in RTL)
+        background: "var(--blue-light)",
+        color: "var(--text)",
+        borderStartStartRadius: 6,
+      };
+
   return (
-    <div className={`flex ${isMe ? "justify-end" : "justify-start"}`}>
+    <div className="chat-row" style={wrapStyle}>
       <div
-        className="max-w-[80%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed"
-        style={
-          isMe
-            ? { background: "linear-gradient(135deg, var(--orange), #ff8a3d)", color: "#fff", borderTopRightRadius: 6 }
-            : { background: "var(--blue-light)", color: "var(--text)", borderTopLeftRadius: 6 }
-        }
+        className="chat-bubble inline-flex flex-wrap items-center gap-1 rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed"
+        style={bubbleStyle}
+        dir="rtl"
       >
         {children}
+      </div>
+    </div>
+  );
+}
+
+function TypingBubble({ side }: { side: "me" | "them" }) {
+  const isMe = side === "me";
+  const wrapStyle: React.CSSProperties = isMe
+    ? { marginInlineStart: "auto" }
+    : { marginInlineEnd: "auto" };
+  const bubbleStyle: React.CSSProperties = isMe
+    ? { background: "linear-gradient(135deg, var(--orange), #ff8a3d)", borderStartEndRadius: 6, color: "#fff" }
+    : { background: "var(--blue-light)", borderStartStartRadius: 6, color: "var(--text)" };
+  return (
+    <div className="chat-row" style={wrapStyle}>
+      <div className="rounded-2xl px-3.5 py-2.5" style={bubbleStyle}>
+        <span className="typing-dots" aria-label="يكتب">
+          <span /><span /><span />
+        </span>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export function ScrollProgress({ sections }: { sections: Section[] }) {
       if (barRef.current) barRef.current.style.transform = `scaleX(${ratio})`;
       if (pctRef.current && pctNumRef.current) {
         const pct = Math.round(ratio * 100);
-        pctNumRef.current.textContent = pct.toLocaleString("ar-EG") + "٪";
+        pctNumRef.current.textContent = pct.toLocaleString("en-US") + "%";
         pctRef.current.dataset.active = window.scrollY > 80 ? "true" : "false";
       }
       tickingRef.current = false;
@@ -100,8 +100,11 @@ export function ScrollProgress({ sections }: { sections: Section[] }) {
         <div ref={barRef} className="bar" />
       </div>
       <div ref={pctRef} className="scroll-pct" aria-hidden>
-        <span>📍</span>
-        <span ref={pctNumRef}>٠٪</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 22s-7-7.5-7-13a7 7 0 0 1 14 0c0 5.5-7 13-7 13Z" />
+          <circle cx="12" cy="9" r="2.5" />
+        </svg>
+        <span ref={pctNumRef}>0%</span>
       </div>
       <div className="scroll-track" aria-hidden>
         <div ref={fillRef} className="scroll-fill" />

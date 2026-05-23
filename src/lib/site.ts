@@ -25,8 +25,8 @@ export const NAV_LINKS = [
 ] as const;
 
 export const STATS = [
-  { value: 50000, suffix: "+", label: "طفل نشط", emoji: "👧🏻" },
-  { value: 200, suffix: "+", label: "لعبة تعليمية", emoji: "🎮" },
-  { value: 500, suffix: "+", label: "قصة تفاعلية", emoji: "📖" },
-  { value: 98, suffix: "%", label: "رضا الأولياء", emoji: "💚" },
+  { value: 50000, suffix: "+", label: "طفل نشط", icon: "users" },
+  { value: 200, suffix: "+", label: "لعبة تعليمية", icon: "gamepad" },
+  { value: 500, suffix: "+", label: "قصة تفاعلية", icon: "book" },
+  { value: 98, suffix: "%", label: "رضا الأولياء", icon: "heart" },
 ] as const;

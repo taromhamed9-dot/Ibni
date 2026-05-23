@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { STATS } from "@/lib/site";
 import { Reveal } from "../reveal";
+import { Icon } from "@/components/icons";
 
-const ARABIC_DIGITS = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
 const COL_HEIGHT = 56;
+const DIGITS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-/** Mechanical odometer-style Arabic-digit roll-down counter. */
+/** Mechanical odometer-style digit roll-down counter (Western numerals). */
 function Roller({ target, prefix = "", suffix = "" }: { target: number; prefix?: string; suffix?: string }) {
   const ref = useRef<HTMLSpanElement | null>(null);
   const [shown, setShown] = useState(false);
@@ -30,13 +31,14 @@ function Roller({ target, prefix = "", suffix = "" }: { target: number; prefix?:
     return () => io.disconnect();
   }, [shown]);
 
-  const formatted = target.toLocaleString("ar-EG").split("");
+  // Format with grouping commas (e.g. 50,000)
+  const formatted = target.toLocaleString("en-US").split("");
 
   return (
     <span ref={ref} className="roller" style={{ direction: "ltr" }}>
       {prefix && <span style={{ lineHeight: 1 }}>{prefix}</span>}
       {formatted.map((ch, i) => {
-        const idx = ARABIC_DIGITS.indexOf(ch);
+        const idx = DIGITS.indexOf(ch);
         if (idx === -1) {
           return (
             <span key={i} className="inline-block" style={{ lineHeight: 1 }}>
@@ -54,7 +56,7 @@ function Roller({ target, prefix = "", suffix = "" }: { target: number; prefix?:
                 transitionDelay: `${i * 90}ms`,
               }}
             >
-              {ARABIC_DIGITS.map((d, k) => (
+              {DIGITS.map((d, k) => (
                 <span key={k} style={{ height: COL_HEIGHT, lineHeight: `${COL_HEIGHT}px` }}>
                   {d}
                 </span>
@@ -75,6 +77,13 @@ const TONES = [
   { bg: "var(--orange-light)", fg: "var(--orange)" },
 ];
 
+const ICONS: Record<string, ReactNode> = {
+  users: <Icon.Users size={24} />,
+  gamepad: <Icon.Gamepad size={24} />,
+  book: <Icon.Book size={24} />,
+  heart: <Icon.Heart size={24} />,
+};
+
 export function Stats() {
   return (
     <section id="stats" className="relative py-12 md:py-20">
@@ -90,10 +99,10 @@ export function Stats() {
                   className="tilt surface-card relative overflow-hidden rounded-3xl p-4 text-center sm:p-5 md:p-7"
                 >
                   <span
-                    className="mx-auto grid h-12 w-12 place-items-center rounded-2xl text-2xl"
+                    className="mx-auto grid h-12 w-12 place-items-center rounded-2xl"
                     style={{ background: tone.bg, color: tone.fg }}
                   >
-                    <span className="emoji-bounce">{s.emoji}</span>
+                    {ICONS[s.icon]}
                   </span>
                   <div
                     className="display-xl mt-3 flex items-baseline justify-center text-[32px] sm:text-[40px] md:text-[52px]"

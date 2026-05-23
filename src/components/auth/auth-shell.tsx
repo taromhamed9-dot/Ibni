@@ -30,20 +30,40 @@ export function AuthShell({
           <div className="absolute inset-0 dotted-grid opacity-25" />
         </div>
 
-        <div className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl gap-10 px-5 py-10 md:px-8 md:py-14 lg:grid-cols-2 lg:gap-16">
+        <div className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl gap-10 px-4 py-8 sm:px-5 sm:py-10 md:px-8 md:py-14 lg:grid-cols-2 lg:gap-16">
           {/* Brand pane */}
           <BrandPane side={side} />
 
           {/* Form pane */}
-          <div className="flex items-center justify-center">
+          <div className="flex w-full min-w-0 items-center justify-center">
             <div
-              className="w-full max-w-md rounded-[28px] p-7 md:p-9"
+              className="w-full max-w-md min-w-0 rounded-[24px] p-5 sm:p-7 md:rounded-[28px] md:p-9"
               style={{
                 background: "var(--card-bg)",
                 border: "1px solid var(--border-color)",
                 boxShadow: "var(--shadow-lg)",
               }}
             >
+              {/* Mobile brand strip */}
+              <div className="mb-4 flex items-center justify-between lg:hidden">
+                <Link href="/" className="inline-flex items-center gap-2">
+                  <span
+                    className="relative inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-xl"
+                    style={{ border: "1px solid var(--border-color)" }}
+                  >
+                    <Image src="/logo.jpeg" alt="إبني" width={36} height={36} className="h-full w-full object-cover" />
+                  </span>
+                  <span className="font-display text-lg font-extrabold" style={{ color: "var(--text)" }}>إبني</span>
+                </Link>
+                <Link
+                  href={side === "signup" ? "/login" : "/signup"}
+                  className="text-xs font-bold"
+                  style={{ color: "var(--text-muted)" }}
+                >
+                  {side === "signup" ? "تسجيل الدخول" : "إنشاء حساب"}
+                </Link>
+              </div>
+
               <span
                 className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold"
                 style={{ background: "var(--orange-light)", color: "var(--orange)" }}
@@ -52,19 +72,19 @@ export function AuthShell({
                 {eyebrow}
               </span>
               <h1
-                className="mt-4 font-display text-3xl font-extrabold leading-tight md:text-4xl"
-                style={{ color: "var(--text)" }}
+                className="mt-4 font-display text-2xl font-extrabold leading-snug sm:text-3xl md:text-4xl"
+                style={{ color: "var(--text)", overflowWrap: "anywhere", wordBreak: "break-word" }}
               >
                 {title}
               </h1>
-              <p className="mt-2 text-sm md:text-base" style={{ color: "var(--text-muted)" }}>
+              <p className="mt-2 text-[13px] leading-relaxed sm:text-sm md:text-base" style={{ color: "var(--text-muted)" }}>
                 {description}
               </p>
 
-              <div className="mt-7">{children}</div>
+              <div className="mt-6 sm:mt-7">{children}</div>
 
               {footer && (
-                <p className="mt-6 text-center text-sm" style={{ color: "var(--text-muted)" }}>
+                <p className="mt-6 text-center text-xs sm:text-sm" style={{ color: "var(--text-muted)" }}>
                   {footer}
                 </p>
               )}
@@ -117,7 +137,7 @@ function BrandPane({ side }: { side: "signin" | "signup" }) {
         </h2>
         <p className="mt-3 max-w-md text-base md:text-lg" style={{ color: "var(--text-muted)" }}>
           {side === "signup"
-            ? "أنشئ حساب العائلة في أقل من دقيقة. ١٤ يوماً تجربة مجانية، بدون بطاقة بنكية."
+            ? "أنشئ حساب العائلة في أقل من دقيقة. 14 يوماً تجربة مجانية، بدون بطاقة بنكية."
             : "سجّل دخولك لمتابعة تقدّم أطفالك، إدارة الجلسات، وقراءة التقارير الأسبوعية."}
         </p>
       </div>

@@ -46,6 +46,11 @@ export const Icon = {
       <path d="M20.8 8.6a5 5 0 0 0-8.8-3.2 5 5 0 0 0-8.8 3.2c0 5.2 8.8 10.4 8.8 10.4s8.8-5.2 8.8-10.4Z" />
     </svg>
   ),
+  HeartFilled: ({ size = 20, ...p }: IconProps) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden focusable={false} className={p.className} {...p}>
+      <path fill="currentColor" d="M20.8 8.6a5 5 0 0 0-8.8-3.2 5 5 0 0 0-8.8 3.2c0 5.2 8.8 10.4 8.8 10.4s8.8-5.2 8.8-10.4Z" />
+    </svg>
+  ),
   Brain: ({ size = 20, ...p }: IconProps) => (
     <svg {...base(size, p.className)} {...p}>
       <path d="M9.5 4A3.5 3.5 0 0 0 6 7.5 3 3 0 0 0 4 11a3 3 0 0 0 1.2 2.4A3 3 0 0 0 5 16a3.5 3.5 0 0 0 4.5 3.4V4Z" />
@@ -87,6 +92,23 @@ export const Icon = {
   Star: ({ size = 20, ...p }: IconProps) => (
     <svg {...base(size, p.className)} {...p}>
       <path d="m12 3 2.7 5.6 6.3.9-4.5 4.4 1.1 6.1L12 17l-5.6 3 1.1-6.1-4.5-4.4 6.3-.9L12 3Z" />
+    </svg>
+  ),
+  StarFilled: ({ size = 20, ...p }: IconProps) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden focusable={false} className={p.className} {...p}>
+      <path fill="currentColor" d="m12 3 2.7 5.6 6.3.9-4.5 4.4 1.1 6.1L12 17l-5.6 3 1.1-6.1-4.5-4.4 6.3-.9L12 3Z" />
+    </svg>
+  ),
+  Question: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 3.5" />
+      <circle cx="12" cy="17" r="0.6" fill="currentColor" stroke="none" />
+    </svg>
+  ),
+  Quote: ({ size = 20, ...p }: IconProps) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden focusable={false} className={p.className} {...p}>
+      <path fill="currentColor" d="M7.3 5.5C4.7 6.6 3 9 3 12c0 3 1.7 5 4 5 1.5 0 2.5-1 2.5-2.4 0-1.4-1-2.3-2.2-2.3-.2 0-.3 0-.5.1 0-2.1 1.4-3.6 3.2-4.2.4-.2.5-.6.4-1 -.2-.4-.6-.5-1-.4ZM17.3 5.5c-2.6 1.1-4.3 3.5-4.3 6.5 0 3 1.7 5 4 5 1.5 0 2.5-1 2.5-2.4 0-1.4-1-2.3-2.2-2.3-.2 0-.3 0-.5.1 0-2.1 1.4-3.6 3.2-4.2.4-.2.5-.6.4-1 -.2-.4-.6-.5-1-.4Z" />
     </svg>
   ),
   Lock: ({ size = 20, ...p }: IconProps) => (
@@ -266,13 +288,116 @@ export const Icon = {
     </svg>
   ),
   AppStore: ({ size = 20, ...p }: IconProps) => (
-    <svg {...base(size, p.className)} {...p}>
-      <path d="M16 3c-1 1.5-3 2-3 4 2 0 4-1.5 4-4M8 21l-2-4M16 21l2-4M5 17h14a3 3 0 0 0 3-3l-3-5a4 4 0 0 0-3-2H8a4 4 0 0 0-3 2l-3 5a3 3 0 0 0 3 3Z" />
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden focusable={false} className={p.className} {...p}>
+      <path fill="currentColor" d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01ZM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25Z" />
     </svg>
   ),
   PlayStore: ({ size = 20, ...p }: IconProps) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden focusable={false} className={p.className} {...p}>
+      <path d="M3.6 2.3A1.5 1.5 0 0 0 3 3.5v17a1.5 1.5 0 0 0 .6 1.2l9.62-9.7L3.6 2.3Z" fill="#34A853" />
+      <path d="m17.05 8.45-3.34-1.9-2.69 2.7 2.7 2.71 3.33-1.9a1.4 1.4 0 0 0 0-2.4l-.01-.01.01-.01v-.19Z" fill="#FBBC04" />
+      <path d="m3.6 2.3 9.62 9.7-2.7-2.7L3.6 2.3Z" fill="#EA4335" />
+      <path d="m3.6 21.7 9.62-9.7-2.7 2.7L3.6 21.7Z" fill="#4285F4" />
+      <path d="M13.71 17.45 17.05 15.55v-.01a1.4 1.4 0 0 0 .9-1.3 1.4 1.4 0 0 0-.9-1.3v-.01l-3.34-1.9-2.69 2.71 2.69 2.71Z" fill="#FBBC04" />
+    </svg>
+  ),
+  Microphone: ({ size = 20, ...p }: IconProps) => (
     <svg {...base(size, p.className)} {...p}>
-      <path d="M5 3v18l14-9L5 3ZM5 3l11 18M5 21l11-18" />
+      <rect x="9" y="3" width="6" height="11" rx="3" />
+      <path d="M5 12a7 7 0 0 0 14 0M12 19v3M9 22h6" />
+    </svg>
+  ),
+  Mosque: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <path d="M12 3v3M11 5h2" />
+      <path d="M5 21V11a7 7 0 0 1 14 0v10" />
+      <path d="M9 21v-4a1 1 0 0 1 2 0v4M13 21v-4a1 1 0 0 1 2 0v4" />
+      <path d="M3 21h18" />
+    </svg>
+  ),
+  Activity: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <circle cx="9" cy="5" r="2" />
+      <path d="M5 22l3-8 4 3 4-6 3 11" />
+    </svg>
+  ),
+  Pulse: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <path d="M3 12h4l3-7 4 14 3-7h4" />
+    </svg>
+  ),
+  ChartBar: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <path d="M3 21V11M9 21V5M15 21V13M21 21V8" />
+      <path d="M2 21h20" />
+    </svg>
+  ),
+  TrendingUp: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <path d="M3 17l6-6 4 4 8-9" />
+      <path d="M14 6h7v7" />
+    </svg>
+  ),
+  TrendingDown: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <path d="M3 7l6 6 4-4 8 9" />
+      <path d="M14 18h7v-7" />
+    </svg>
+  ),
+  Smile: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M8 14s1.5 2 4 2 4-2 4-2M9 10h.01M15 10h.01" />
+    </svg>
+  ),
+  Frown: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M16 16s-1.5-2-4-2-4 2-4 2M9 10h.01M15 10h.01" />
+    </svg>
+  ),
+  Alert: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <path d="M10.3 3.86 1.82 18a2 2 0 0 0 1.73 3h16.9a2 2 0 0 0 1.73-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
+      <path d="M12 9v4M12 17h.01" />
+    </svg>
+  ),
+  PhoneAlert: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <rect x="6" y="2" width="12" height="20" rx="3" />
+      <path d="M12 17h.01" />
+    </svg>
+  ),
+  UserX: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <circle cx="9" cy="8" r="4" />
+      <path d="M3 21c0-3.6 2.7-6 6-6s6 2.4 6 6" />
+      <path d="m17 9 5 5M22 9l-5 5" />
+    </svg>
+  ),
+  BookSparkle: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <path d="M4 4h11a3 3 0 0 1 3 3v14H7a3 3 0 0 0-3 3V4Z" />
+      <path d="m20 4 .8 1.7L22.5 6.5 20.8 7.3 20 9l-.8-1.7L17.5 6.5l1.7-.8L20 4Z" />
+    </svg>
+  ),
+  Play: ({ size = 20, ...p }: IconProps) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden focusable={false} className={p.className} {...p}>
+      <path d="M7 4.5v15a1 1 0 0 0 1.55.83l12-7.5a1 1 0 0 0 0-1.66l-12-7.5A1 1 0 0 0 7 4.5Z" fill="currentColor" />
+    </svg>
+  ),
+  Film: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="M3 8h18M3 16h18M7 4v16M17 4v16" />
+    </svg>
+  ),
+  Family: ({ size = 20, ...p }: IconProps) => (
+    <svg {...base(size, p.className)} {...p}>
+      <circle cx="6.5" cy="6" r="2.5" />
+      <circle cx="17.5" cy="6" r="2.5" />
+      <circle cx="12" cy="14" r="2" />
+      <path d="M2 21c0-2.5 2-4.5 4.5-4.5S11 18.5 11 21M13 21c0-2.5 2-4.5 4.5-4.5S22 18.5 22 21M9 17h6" />
     </svg>
   ),
   Instagram: ({ size = 20, ...p }: IconProps) => (
@@ -361,9 +486,8 @@ export const Icon = {
     </svg>
   ),
   Apple: ({ size = 20, ...p }: IconProps) => (
-    <svg {...base(size, p.className)} {...p}>
-      <path d="M16 3c-.4 1.7-2 2.7-3.5 2.5C12.2 4 13.7 2.4 16 3Z" fill="currentColor" stroke="none" />
-      <path d="M19 16.5a8 8 0 0 1-1.5 2.5c-.9 1.2-1.9 2-3 2-1 0-1.4-.5-2.5-.5s-1.6.5-2.5.5c-1.2 0-2.2-.9-3.1-2C4.4 16.6 3.5 12 5.7 9.4c.9-1.1 2.2-1.7 3.6-1.6 1 0 1.9.5 2.7.5.7 0 1.7-.6 3-.5 1 0 1.9.3 2.7 1-2.3 1.4-2 4.8.3 5.7Z" />
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden focusable={false} className={p.className} {...p}>
+      <path fill="currentColor" d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01ZM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25Z" />
     </svg>
   ),
   Key: ({ size = 20, ...p }: IconProps) => (

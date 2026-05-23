@@ -4,10 +4,10 @@ import { Icon } from "../icons";
 import { Reveal } from "../reveal";
 
 const badges = [
-  { icon: <Icon.Flame />, name: "متعلّم متواصل", desc: "٧ أيام بدون انقطاع" },
-  { icon: <Icon.Star />, name: "نجم القراءة", desc: "أكمل ١٠ قصص" },
+  { icon: <Icon.Flame />, name: "متعلّم متواصل", desc: "7 أيام بدون انقطاع" },
+  { icon: <Icon.Star />, name: "نجم القراءة", desc: "أكمل 10 قصص" },
   { icon: <Icon.Brain />, name: "عقل سريع", desc: "أتقن الحساب الذهني" },
-  { icon: <Icon.Quran />, name: "حافظ صغير", desc: "حفظ ٣ سور قصيرة" },
+  { icon: <Icon.Quran />, name: "حافظ صغير", desc: "حفظ 3 سور قصيرة" },
 ];
 
 export function Achievements() {

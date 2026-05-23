@@ -27,7 +27,7 @@ export default function LoginPage() {
         </>
       }
     >
-      <div className="flex gap-3">
+      <div className="flex flex-col gap-2 sm:flex-row sm:gap-3">
         <SocialButton provider="google" label="الدخول عبر Google" />
         <SocialButton provider="apple" label="الدخول عبر Apple" />
       </div>

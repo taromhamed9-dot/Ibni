@@ -8,7 +8,7 @@ const plans = [
     name: "إبني للعائلة",
     price: "1,990",
     period: "د.ج / شهر",
-    note: "حتى ٣ أطفال · ١٤ يوم تجربة مجانية",
+    note: "حتى 3 أطفال · 14 يوم تجربة مجانية",
     features: [
       "كل التطبيقات والقصص والألعاب",
       "مساعد إبني الذكي",
@@ -23,7 +23,7 @@ const plans = [
     name: "إبني للعائلة الكبيرة",
     price: "2,990",
     period: "د.ج / شهر",
-    note: "حتى ٦ أطفال · توفير ٢٥٪",
+    note: "حتى 6 أطفال · توفير 25%",
     features: [
       "كل ميزات الباقة العائلية",
       "مسارات تعلّم متعدّدة",
@@ -54,7 +54,7 @@ export default function PricingPage() {
     <PageShell
       eyebrow="الاشتراك"
       title={<>أسعار صادقة، <span className="gradient-text-warm">بدون مفاجآت.</span></>}
-      description="١٤ يوم تجربة مجانية لكل عائلة جديدة. بدون بطاقة بنكية. ألغِ في أي وقت."
+      description="14 يوم تجربة مجانية لكل عائلة جديدة. بدون بطاقة بنكية. ألغِ في أي وقت."
     >
       <section className="py-12 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-6 px-5 md:grid-cols-3 md:px-8">

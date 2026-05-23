@@ -567,3 +567,20 @@ html[dir="ltr"] .squiggle::after { transform-origin: left center; }
   height: 1em;
   line-height: 1;
 }
+
+/* ---------- Chat bubble fade-in ---------- */
+.chat-row {
+  display: flex;
+  animation: chat-pop 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+@keyframes chat-pop {
+  0%   { opacity: 0; transform: translate3d(0, 8px, 0) scale(0.96); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+.chat-bubble {
+  word-break: break-word;
+}
+@media (prefers-reduced-motion: reduce) {
+  .chat-row { animation: none; }
+}

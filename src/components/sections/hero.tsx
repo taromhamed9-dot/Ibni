@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
+import { Icon } from "@/components/icons";
 
 export function Hero() {
   const stageRef = useRef<HTMLDivElement | null>(null);
@@ -55,8 +56,8 @@ export function Hero() {
         {/* Editorial column */}
         <div className="lg:col-span-7">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="sticker text-[11px]">
-              <span>✨</span>
+            <span className="sticker inline-flex items-center gap-1.5 text-[11px]">
+              <Icon.Sparkles size={12} />
               البديل الذكي لإدمان الشاشات
             </span>
             <span
@@ -67,7 +68,15 @@ export function Hero() {
                 <span className="absolute inset-0 animate-ping rounded-full" style={{ background: "var(--green)" }} />
                 <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: "var(--green)" }} />
               </span>
-              نبثّ من الجزائر 🇩🇿
+              نبثّ من الجزائر
+              <span
+                className="ms-1 inline-flex h-[14px] w-[20px] overflow-hidden rounded-[3px]"
+                aria-label="DZ"
+                style={{ border: "1px solid var(--border-color)" }}
+              >
+                <span className="h-full flex-1" style={{ background: "#006233" }} />
+                <span className="h-full flex-1" style={{ background: "#fff" }} />
+              </span>
             </span>
           </div>
 
@@ -93,7 +102,7 @@ export function Hero() {
               className="btn-primary justify-center text-base"
               style={{ minHeight: 52 }}
             >
-              <span>🚀</span>
+              <Icon.Rocket size={18} />
               ابدأ رحلة طفلك مجاناً
             </Link>
             <Link
@@ -101,17 +110,17 @@ export function Hero() {
               className="btn-ghost justify-center text-base"
               style={{ minHeight: 52 }}
             >
-              <span>🎬</span>
+              <Icon.Play size={16} />
               شاهد كيف تعمل
             </Link>
           </div>
 
           {/* Trust pills */}
           <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-2.5">
-            <TrustPill emoji="🛡️" label="محتوى آمن 100%" tone="green" />
-            <TrustPill emoji="🧠" label="مدعوم بالذكاء الاصطناعي" tone="blue" />
-            <TrustPill emoji="🌍" label="لملايين الأطفال العرب" tone="orange" />
-            <TrustPill emoji="✅" label="معتمد تربوياً" tone="green" />
+            <TrustPill icon={<Icon.Shield size={16} />} label="محتوى آمن 100%" tone="green" />
+            <TrustPill icon={<Icon.Brain size={16} />} label="مدعوم بالذكاء الاصطناعي" tone="blue" />
+            <TrustPill icon={<Icon.Globe size={16} />} label="لملايين الأطفال العرب" tone="orange" />
+            <TrustPill icon={<Icon.CheckCircle size={16} />} label="معتمد تربوياً" tone="green" />
           </div>
         </div>
 
@@ -167,18 +176,22 @@ export function Hero() {
                 </span>
               </div>
 
-              <div className="mt-4 rounded-2xl p-4 text-sm leading-relaxed"
+              <div className="mt-4 flex items-start gap-2 rounded-2xl p-4 text-sm leading-relaxed"
                 style={{ background: "var(--blue-light)", color: "var(--text)" }}>
-                أحسنت يا أحمد! 🌟 لقد أتممت درس الرياضيات. هل تريد تجربة تحدي جديد؟
+                <span className="mt-0.5 shrink-0" style={{ color: "var(--orange)" }}>
+                  <Icon.Sparkles size={16} />
+                </span>
+                <span>أحسنت يا أحمد! لقد أتممت درس الرياضيات. هل تريد تجربة تحدي جديد؟</span>
               </div>
 
               <div className="mt-3 flex items-center justify-between rounded-2xl p-3"
                 style={{ background: "var(--cream)", border: "1px solid var(--border-color)" }}>
                 <span className="flex items-center gap-2 text-xs font-semibold" style={{ color: "var(--text)" }}>
-                  <span>📈</span> تقدم اليوم
+                  <span style={{ color: "var(--green)" }}><Icon.TrendingUp size={14} /></span>
+                  تقدم اليوم
                 </span>
                 <span className="text-base font-extrabold gradient-text-warm" style={{ letterSpacing: "-0.02em" }}>
-                  ٨٥٪
+                  85%
                 </span>
               </div>
               <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full" style={{ background: "var(--border-color)" }}>
@@ -191,17 +204,26 @@ export function Hero() {
             <FloatChip
               className="absolute -right-2 -top-3"
               dx={-1} dy={-1}
-              emoji="🎮" title="ألعاب تعليمية" sub="+200 لعبة تفاعلية" tone="orange"
+              icon={<Icon.Gamepad size={18} />}
+              title="ألعاب تعليمية"
+              sub="+200 لعبة تفاعلية"
+              tone="orange"
             />
             <FloatChip
               className="absolute -left-3 top-1/3"
               dx={-1} dy={1}
-              emoji="🧠" title="ذكاء اصطناعي" sub="تعلم مخصص لطفلك" tone="blue"
+              icon={<Icon.Brain size={18} />}
+              title="ذكاء اصطناعي"
+              sub="تعلم مخصص لطفلك"
+              tone="blue"
             />
             <FloatChip
               className="absolute -bottom-4 right-3"
               dx={1} dy={1}
-              emoji="🏆" title="نظام المكافآت" sub="اجمع النقاط!" tone="green"
+              icon={<Icon.Trophy size={18} />}
+              title="نظام المكافآت"
+              sub="اجمع النقاط!"
+              tone="green"
             />
           </div>
         </div>
@@ -210,7 +232,7 @@ export function Hero() {
   );
 }
 
-function TrustPill({ emoji, label, tone }: { emoji: string; label: string; tone: "green" | "blue" | "orange" }) {
+function TrustPill({ icon, label, tone }: { icon: ReactNode; label: string; tone: "green" | "blue" | "orange" }) {
   const bg =
     tone === "green" ? "var(--green-light)" : tone === "blue" ? "var(--blue-light)" : "var(--orange-light)";
   const fg = tone === "green" ? "var(--green)" : tone === "blue" ? "var(--blue)" : "var(--orange)";
@@ -220,10 +242,10 @@ function TrustPill({ emoji, label, tone }: { emoji: string; label: string; tone:
       style={{ background: "var(--card-bg)", color: "var(--text)", border: "1px solid var(--border-color)" }}
     >
       <span
-        className="grid h-7 w-7 shrink-0 place-items-center rounded-xl text-base"
+        className="grid h-7 w-7 shrink-0 place-items-center rounded-xl"
         style={{ background: bg, color: fg }}
       >
-        {emoji}
+        {icon}
       </span>
       <span className="leading-tight">{label}</span>
     </div>
@@ -231,13 +253,14 @@ function TrustPill({ emoji, label, tone }: { emoji: string; label: string; tone:
 }
 
 function FloatChip({
-  emoji, title, sub, className, tone, dx, dy,
+  icon, title, sub, className, tone, dx, dy,
 }: {
-  emoji: string; title: string; sub: string; className?: string;
+  icon: ReactNode; title: string; sub: string; className?: string;
   tone: "orange" | "green" | "blue"; dx: number; dy: number;
 }) {
   const bg =
     tone === "orange" ? "var(--orange-light)" : tone === "green" ? "var(--green-light)" : "var(--blue-light)";
+  const fg = tone === "orange" ? "var(--orange)" : tone === "green" ? "var(--green)" : "var(--blue)";
   return (
     <div
       className={`animate-float surface-card pointer-events-none flex max-w-[180px] items-center gap-2.5 rounded-2xl p-2.5 ${className ?? ""}`}
@@ -246,8 +269,8 @@ function FloatChip({
         transition: "transform 0.5s var(--ease-spring)",
       }}
     >
-      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl text-lg" style={{ background: bg }}>
-        {emoji}
+      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl" style={{ background: bg, color: fg }}>
+        {icon}
       </span>
       <span className="flex flex-col leading-tight">
         <span className="text-[12px] font-extrabold" style={{ color: "var(--text)" }}>{title}</span>

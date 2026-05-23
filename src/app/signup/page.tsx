@@ -17,7 +17,7 @@ export default function SignupPage() {
       side="signup"
       eyebrow="إنشاء حساب"
       title={<>أنشئ حساب <span className="gradient-text-warm">العائلة</span> في دقيقة.</>}
-      description="١٤ يوماً تجربة مجانية. بدون بطاقة بنكية. يمكنك إضافة أطفالك بعد التسجيل."
+      description="14 يوماً تجربة مجانية. بدون بطاقة بنكية. يمكنك إضافة أطفالك بعد التسجيل."
       footer={
         <>
           لديك حساب بالفعل؟{" "}
@@ -27,7 +27,7 @@ export default function SignupPage() {
         </>
       }
     >
-      <div className="flex gap-3">
+      <div className="flex flex-col gap-2 sm:flex-row sm:gap-3">
         <SocialButton provider="google" label="إنشاء عبر Google" />
         <SocialButton provider="apple" label="إنشاء عبر Apple" />
       </div>
@@ -57,8 +57,8 @@ export default function SignupPage() {
         <PasswordField
           label="كلمة السر"
           autoComplete="new-password"
-          placeholder="٨ حروف على الأقل"
-          hint="على الأقل ٨ حروف، وحرف كبير، ورقم."
+          placeholder="8 حروف على الأقل"
+          hint="على الأقل 8 حروف، وحرف كبير، ورقم."
         />
 
         <Checkbox
@@ -90,7 +90,7 @@ export default function SignupPage() {
       >
         <p className="flex items-center gap-2 text-xs font-semibold" style={{ color: "var(--text)" }}>
           <Icon.Sparkles size={14} />
-          ماذا تحصل في الـ ١٤ يوم؟
+          ماذا تحصل في الـ 14 يوم؟
         </p>
         <ul className="grid gap-1.5 text-xs" style={{ color: "var(--text-muted)" }}>
           <li className="flex items-center gap-2"><Icon.CheckCircle size={14} /> وصول كامل لكل التطبيقات والقصص</li>

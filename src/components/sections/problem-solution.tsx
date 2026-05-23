@@ -1,23 +1,24 @@
 "use client";
 
 import { Reveal } from "../reveal";
+import { Icon } from "@/components/icons";
 
 const PROBLEMS = [
-  { emoji: "📱", text: "إدمان الشاشات والهواتف" },
-  { emoji: "😰", text: "محتوى غير آمن وغير مراقب" },
-  { emoji: "🧠", text: "ضعف التركيز والانتباه" },
-  { emoji: "😔", text: "عزلة اجتماعية وانطواء" },
-  { emoji: "📉", text: "تراجع المستوى الدراسي" },
-  { emoji: "😤", text: "سلوكيات عدوانية من الألعاب" },
+  { Icon: Icon.PhoneAlert, text: "إدمان الشاشات والهواتف" },
+  { Icon: Icon.Alert, text: "محتوى غير آمن وغير مراقب" },
+  { Icon: Icon.TrendingDown, text: "ضعف التركيز والانتباه" },
+  { Icon: Icon.UserX, text: "عزلة اجتماعية وانطواء" },
+  { Icon: Icon.ChartBar, text: "تراجع المستوى الدراسي" },
+  { Icon: Icon.Frown, text: "سلوكيات عدوانية من الألعاب" },
 ];
 
 const SOLUTIONS = [
-  { emoji: "🎮", text: "ألعاب تعليمية ذكية وممتعة" },
-  { emoji: "🛡️", text: "محتوى آمن ومراقب بالكامل" },
-  { emoji: "🧩", text: "تنمية التركيز والإبداع" },
-  { emoji: "👨‍👩‍👧‍👦", text: "تفاعل عائلي وترابط أسري" },
-  { emoji: "📈", text: "تحسن ملموس في التعلم" },
-  { emoji: "🌟", text: "قيم عربية إسلامية أصيلة" },
+  { Icon: Icon.Gamepad, text: "ألعاب تعليمية ذكية وممتعة" },
+  { Icon: Icon.Shield, text: "محتوى آمن ومراقب بالكامل" },
+  { Icon: Icon.Puzzle, text: "تنمية التركيز والإبداع" },
+  { Icon: Icon.Family, text: "تفاعل عائلي وترابط أسري" },
+  { Icon: Icon.TrendingUp, text: "تحسن ملموس في التعلم" },
+  { Icon: Icon.Mosque, text: "قيم عربية إسلامية أصيلة" },
 ];
 
 export function ProblemSolution() {
@@ -29,7 +30,7 @@ export function ProblemSolution() {
             className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest"
             style={{ background: "var(--orange-light)", color: "var(--orange)" }}
           >
-            <span>💡</span> لماذا إبني؟
+            <Icon.Lightning size={12} /> لماذا إبني؟
           </span>
           <h2 className="display-xl mt-4 text-3xl sm:text-4xl md:text-5xl" style={{ color: "var(--text)" }}>
             من إدمان الشاشات إلى{" "}
@@ -52,10 +53,10 @@ export function ProblemSolution() {
             >
               <div className="flex items-center gap-3">
                 <span
-                  className="grid h-12 w-12 place-items-center rounded-2xl text-2xl"
-                  style={{ background: "rgba(255, 99, 71, 0.18)" }}
+                  className="grid h-12 w-12 place-items-center rounded-2xl"
+                  style={{ background: "rgba(255, 99, 71, 0.18)", color: "#E04F35" }}
                 >
-                  😟
+                  <Icon.Alert size={22} />
                 </span>
                 <div className="leading-tight">
                   <p className="text-[11px] font-extrabold uppercase tracking-widest" style={{ color: "#E04F35" }}>
@@ -77,9 +78,9 @@ export function ProblemSolution() {
                       color: "var(--text)",
                     }}
                   >
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl text-lg"
-                      style={{ background: "rgba(255, 99, 71, 0.12)" }}>
-                      {p.emoji}
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl"
+                      style={{ background: "rgba(255, 99, 71, 0.12)", color: "#E04F35" }}>
+                      <p.Icon size={18} />
                     </span>
                     {p.text}
                   </li>
@@ -99,10 +100,10 @@ export function ProblemSolution() {
             >
               <div className="flex items-center gap-3">
                 <span
-                  className="grid h-12 w-12 place-items-center rounded-2xl text-2xl"
-                  style={{ background: "color-mix(in srgb, var(--green) 20%, transparent)" }}
+                  className="grid h-12 w-12 place-items-center rounded-2xl"
+                  style={{ background: "color-mix(in srgb, var(--green) 20%, transparent)", color: "var(--green)" }}
                 >
-                  ✨
+                  <Icon.Sparkles size={22} />
                 </span>
                 <div className="leading-tight">
                   <p className="text-[11px] font-extrabold uppercase tracking-widest" style={{ color: "var(--green)" }}>
@@ -124,9 +125,9 @@ export function ProblemSolution() {
                       color: "var(--text)",
                     }}
                   >
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl text-lg"
-                      style={{ background: "color-mix(in srgb, var(--green) 15%, transparent)" }}>
-                      {s.emoji}
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl"
+                      style={{ background: "color-mix(in srgb, var(--green) 15%, transparent)", color: "var(--green)" }}>
+                      <s.Icon size={18} />
                     </span>
                     {s.text}
                   </li>
@@ -136,15 +137,28 @@ export function ProblemSolution() {
           </Reveal>
         </div>
 
-        {/* Bridge — animated arrow */}
+        {/* Bridge */}
         <Reveal delay={250}>
           <div className="mt-10 flex flex-col items-center gap-3 text-center md:mt-14">
-            <div className="flex items-center gap-2 text-3xl">
-              <span>😰</span>
-              <span aria-hidden style={{ color: "var(--orange)" }}>›››</span>
-              <span>✨</span>
-              <span aria-hidden style={{ color: "var(--green)" }}>›››</span>
-              <span>🌟</span>
+            <div className="flex items-center gap-3">
+              <span className="grid h-10 w-10 place-items-center rounded-2xl"
+                style={{ background: "rgba(255, 99, 71, 0.15)", color: "#E04F35" }}>
+                <Icon.Frown size={20} />
+              </span>
+              <span aria-hidden style={{ color: "var(--orange)" }}>
+                <Icon.ArrowLeft size={20} />
+              </span>
+              <span className="grid h-10 w-10 place-items-center rounded-2xl"
+                style={{ background: "var(--orange-light)", color: "var(--orange)" }}>
+                <Icon.Sparkles size={20} />
+              </span>
+              <span aria-hidden style={{ color: "var(--green)" }}>
+                <Icon.ArrowLeft size={20} />
+              </span>
+              <span className="grid h-10 w-10 place-items-center rounded-2xl"
+                style={{ background: "var(--green-light)", color: "var(--green)" }}>
+                <Icon.Smile size={20} />
+              </span>
             </div>
             <p className="text-sm font-bold" style={{ color: "var(--text-muted)" }}>
               التحوّل يبدأ من هنا

@@ -2,52 +2,53 @@
 
 import Link from "next/link";
 import { Reveal } from "../reveal";
+import { Icon } from "@/components/icons";
 
 const FEATURES = [
   {
-    emoji: "🧠",
+    Icon: Icon.Brain,
     title: "ذكاء اصطناعي تعليمي",
     text: "مساعد ذكي يتكيف مع مستوى طفلك ويقدم دروساً مخصصة بناءً على نقاط القوة والضعف.",
     tone: "blue",
   },
   {
-    emoji: "🎮",
+    Icon: Icon.Gamepad,
     title: "ألعاب تربوية تفاعلية",
-    text: "أكثر من ٢٠٠ لعبة تعليمية مصممة وفق مبادئ علم نفس الطفل لتعزيز التعلم بالمتعة.",
+    text: "أكثر من 200 لعبة تعليمية مصممة وفق مبادئ علم نفس الطفل لتعزيز التعلم بالمتعة.",
     tone: "orange",
   },
   {
-    emoji: "📖",
+    Icon: Icon.Book,
     title: "قصص تفاعلية مشوّقة",
     text: "قصص عربية تفاعلية يختار فيها الطفل مسار الأحداث مع رسوم متحركة ومؤثرات صوتية.",
     tone: "green",
   },
   {
-    emoji: "👨‍👩‍👧",
+    Icon: Icon.Parent,
     title: "لوحة تحكم الأولياء",
     text: "تابع تقدم طفلك لحظة بلحظة مع تقارير ذكية ورؤى مبنية على الذكاء الاصطناعي.",
     tone: "blue",
   },
   {
-    emoji: "🏫",
+    Icon: Icon.School,
     title: "فصول افتراضية",
     text: "نظام مدرسي متكامل يربط المعلمين بالطلاب في بيئة تعليمية تفاعلية وآمنة.",
     tone: "orange",
   },
   {
-    emoji: "🏆",
+    Icon: Icon.Trophy,
     title: "نظام المكافآت والإنجازات",
     text: "حافز إيجابي يعزز دافعية الطفل من خلال نقاط وأوسمة وتحديات ممتعة.",
     tone: "green",
   },
   {
-    emoji: "🕌",
+    Icon: Icon.Mosque,
     title: "قيم عربية إسلامية",
     text: "محتوى يعزز الهوية العربية والإسلامية مع تعليم القرآن والأخلاق والآداب.",
     tone: "blue",
   },
   {
-    emoji: "🤸",
+    Icon: Icon.Activity,
     title: "أنشطة بدنية ذكية",
     text: "دمج الأنشطة الحركية مع التعلم الرقمي لصحة جسدية ونفسية متوازنة.",
     tone: "orange",
@@ -69,7 +70,7 @@ export function Ecosystem() {
             className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-extrabold uppercase tracking-widest"
             style={{ background: "var(--blue-light)", color: "var(--blue)" }}
           >
-            <span>✨</span> منظومة تعليمية متكاملة
+            <Icon.Sparkles size={12} /> منظومة تعليمية متكاملة
           </span>
           <h2 className="display-xl mt-4 text-3xl sm:text-4xl md:text-5xl" style={{ color: "var(--text)" }}>
             كل ما يحتاجه طفلك{" "}
@@ -87,10 +88,10 @@ export function Ecosystem() {
               <Reveal key={f.title} delay={(i % 4) * 80}>
                 <div className="tilt surface-card group relative h-full overflow-hidden rounded-3xl p-5">
                   <span
-                    className="grid h-12 w-12 place-items-center rounded-2xl text-2xl"
+                    className="grid h-12 w-12 place-items-center rounded-2xl"
                     style={{ background: tone.bg, color: tone.fg }}
                   >
-                    <span className="emoji-bounce">{f.emoji}</span>
+                    <f.Icon size={24} />
                   </span>
                   <h3 className="mt-4 text-base font-extrabold sm:text-lg" style={{ color: "var(--text)" }}>
                     {f.title}
@@ -102,7 +103,8 @@ export function Ecosystem() {
                     className="mt-5 inline-flex items-center gap-1 text-[12px] font-extrabold transition-colors"
                     style={{ color: tone.fg }}
                   >
-                    اكتشف المزيد <span aria-hidden>←</span>
+                    اكتشف المزيد
+                    <Icon.ArrowLeft size={14} />
                   </div>
                   <span
                     aria-hidden
@@ -118,7 +120,7 @@ export function Ecosystem() {
         <Reveal delay={300}>
           <div className="mt-10 flex justify-center">
             <Link href="/apps" className="btn-ghost" style={{ minHeight: 48 }}>
-              <span>🎯</span>
+              <Icon.Target size={16} />
               اكتشف جميع المميزات
             </Link>
           </div>
